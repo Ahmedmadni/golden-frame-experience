@@ -103,7 +103,7 @@
     text-rendering: optimizeLegibility;
   }
   [dir="rtl"] body { font-family: "Tajawal", var(--font-sans); }
-  h1, h2, h3, h4 { font-family: var(--font-display); font-feature-settings: "ss01"; letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-feature-settings: "ss01"; letter-spacing: -0.028em; font-variation-settings: "opsz" 144; font-weight: 500; }
   ::selection { background: oklch(0.78 0.13 85 / 0.35); color: var(--color-foreground); }
 }
 

@@ -10,6 +10,12 @@ import family from "@/assets/gallery-family.jpg";
 import graduation from "@/assets/gallery-graduation.jpg";
 import newborn from "@/assets/gallery-newborn.jpg";
 import cinematic from "@/assets/gallery-cinematic.jpg";
+import extra1 from "@/assets/gallery-extra-1.jpg";
+import extra2 from "@/assets/gallery-extra-2.jpg";
+import extra3 from "@/assets/gallery-extra-3.jpg";
+import extra4 from "@/assets/gallery-extra-4.jpg";
+import extra5 from "@/assets/gallery-extra-5.jpg";
+import extra6 from "@/assets/gallery-extra-6.jpg";
 
 export type Category =
   | "weddings" | "engagement" | "birthday" | "corporate"
@@ -24,13 +30,19 @@ export type GalleryItem = { src: string; category: Category; ratio: "portrait" |
 
 export const GALLERY: GalleryItem[] = [
   { src: weddingA, category: "weddings", ratio: "portrait", alt: "Bride and groom at golden hour" },
+  { src: extra2, category: "fashion", ratio: "portrait", alt: "Model in gold jewellery" },
   { src: fashionA, category: "fashion", ratio: "portrait", alt: "Editorial fashion in studio" },
+  { src: extra1, category: "weddings", ratio: "portrait", alt: "Bride at Cairo rooftop sunset" },
   { src: corporate, category: "corporate", ratio: "portrait", alt: "Executive portrait" },
+  { src: extra3, category: "product", ratio: "landscape", alt: "Swiss watch on marble" },
   { src: engagement, category: "engagement", ratio: "landscape", alt: "Engagement session outdoors" },
   { src: weddingB, category: "weddings", ratio: "portrait", alt: "Bride portrait with veil" },
+  { src: extra5, category: "corporate", ratio: "portrait", alt: "Chiaroscuro business portrait" },
   { src: cinematic, category: "cinematic", ratio: "landscape", alt: "Cinematic portrait with lens flare" },
+  { src: extra4, category: "engagement", ratio: "landscape", alt: "Couple at El Gouna marina" },
   { src: product, category: "product", ratio: "landscape", alt: "Luxury watch product shot" },
   { src: newborn, category: "newborn", ratio: "portrait", alt: "Newborn portrait" },
+  { src: extra6, category: "newborn", ratio: "portrait", alt: "Newborn wrapped in cream" },
   { src: birthday, category: "birthday", ratio: "portrait", alt: "Birthday candles moment" },
   { src: fashionB, category: "fashion", ratio: "landscape", alt: "Model with gold jewellery" },
   { src: family, category: "family", ratio: "landscape", alt: "Family portrait at sunset" },

@@ -41,7 +41,7 @@ const en: Dict = {
   "portfolio.all": "All",
 
   "featured.eyebrow": "Featured project",
-  "featured.title": "Villa Almasa · A three-day wedding film",
+  "featured.title": "Villa El Gouna · A three-day wedding film",
   "featured.desc":
     "Documentary coverage across the reception, ceremony, and reveal — shot on Sony A1 + FX3, cut into a 4-minute cinematic edit.",
   "featured.meta.location": "Location",

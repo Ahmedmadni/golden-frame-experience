@@ -5,6 +5,7 @@ import { listBookings, updateBookingStatus, getMyRole } from "@/lib/bookings.fun
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { CheckCircle2, Clock, XCircle, Star, Loader2 } from "lucide-react";
+import { AdminNav } from "@/components/site/AdminNav";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,

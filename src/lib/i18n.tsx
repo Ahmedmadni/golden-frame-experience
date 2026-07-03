@@ -208,7 +208,7 @@ const ar: Dict = {
   "packages.signature.desc": "أعراس، تصوير أزياء تحريري، حملات علامات.",
   "packages.cinematic.name": "السينمائية",
   "packages.cinematic.desc": "إنتاجات كاملة بفريق سينما ومقاطع يومية.",
-  "packages.currency": "ر.س",
+  "packages.currency": "ج.م",
   "packages.from": "تبدأ من",
   "packages.perProject": "/ مشروع",
 

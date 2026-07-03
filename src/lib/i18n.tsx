@@ -65,7 +65,7 @@ const en: Dict = {
   "packages.signature.desc": "Weddings, fashion editorials, brand campaigns.",
   "packages.cinematic.name": "Cinematic",
   "packages.cinematic.desc": "Full-scale productions with film crew and dailies.",
-  "packages.currency": "SAR",
+  "packages.currency": "EGP",
   "packages.from": "from",
   "packages.perProject": "/ project",
 

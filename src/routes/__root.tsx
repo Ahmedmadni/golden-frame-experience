@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           image: "/hero.jpg",
           "@id": "https://almadani.photo",
           priceRange: "$$$",
-          address: { "@type": "PostalAddress", addressLocality: "Riyadh", addressCountry: "SA" },
+          address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" },
           sameAs: [
             "https://instagram.com/ahmedalmadani",
             "https://tiktok.com/@ahmedalmadani",

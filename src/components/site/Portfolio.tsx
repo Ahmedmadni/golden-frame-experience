@@ -58,38 +58,25 @@ export function Portfolio({ preview = true }: { preview?: boolean }) {
         ))}
       </div>
 
-      <div
-        className="grid gap-4 md:gap-5"
-        style={{
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gridAutoRows: "10px",
-          gridAutoFlow: "dense",
-        }}
-      >
+      <div className="columns-2 gap-3 md:columns-3 md:gap-4 lg:columns-4 xl:columns-5 [column-fill:_balance]">
         {items.map((g, i) => (
           <motion.button
             key={`${g.src}-${i}`}
-            layout
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, delay: (i % 6) * 0.05 }}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: (i % 6) * 0.04 }}
             onClick={() => setActive(g)}
-            className={`group relative overflow-hidden rounded-md ${
-              g.ratio === "portrait" ? "row-span-[38]" : g.ratio === "landscape" ? "row-span-[26] md:col-span-2" : "row-span-[30]"
-            }`}
-            style={{
-              gridRow: `span ${g.ratio === "portrait" ? 38 : g.ratio === "landscape" ? 26 : 30}`,
-            }}
+            className="group relative mb-3 block w-full overflow-hidden rounded-md md:mb-4"
           >
             <img
               src={g.src}
               alt={g.alt}
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="h-auto w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
             />
-            <div className="absolute inset-0 bg-background/0 transition group-hover:bg-background/30" />
-            <span className="absolute bottom-3 start-3 rounded-full bg-background/70 px-3 py-1 text-[10px] uppercase tracking-widest opacity-0 backdrop-blur transition group-hover:opacity-100">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0 opacity-0 transition duration-500 group-hover:opacity-100" />
+            <span className="pointer-events-none absolute bottom-2 start-2 rounded-full bg-background/75 px-2.5 py-1 text-[9px] uppercase tracking-[0.25em] opacity-0 backdrop-blur transition duration-500 group-hover:opacity-100">
               {t(`cat.${g.category}`)}
             </span>
           </motion.button>

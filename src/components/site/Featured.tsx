@@ -47,9 +47,9 @@ export function Featured() {
           </p>
           <dl className="mt-10 space-y-4 border-t border-border pt-6">
             {[
-              { label: t("featured.meta.location"), value: "Villa El Gouna, Red Sea" },
-              { label: t("featured.meta.shots"), value: "612" },
-              { label: t("featured.meta.gear"), value: "Sony A1 · FX3 · DJI Ronin 4D" },
+              { label: t("featured.meta.location"), value: "Maghagha, El-Minya" },
+              { label: t("featured.meta.shots"), value: "812" },
+              { label: t("featured.meta.gear"), value: "Sony A1 · FX3 · 85mm GM" },
             ].map((row) => (
               <div key={row.label} className="flex items-baseline justify-between gap-6">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">{row.label}</dt>

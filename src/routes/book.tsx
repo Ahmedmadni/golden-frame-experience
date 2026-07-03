@@ -138,7 +138,7 @@ function BookPage() {
         </div>
         <div>
           <label className={lbl}>{t("book.form.city")}</label>
-          <input {...register("city")} className={fld} />
+          <input {...register("city")} placeholder="Cairo, Alexandria, El Gouna…" className={fld} />
         </div>
         <div>
           <label className={lbl}>{t("book.form.location")}</label>

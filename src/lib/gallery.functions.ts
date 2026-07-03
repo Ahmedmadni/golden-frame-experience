@@ -14,10 +14,10 @@ function serverClient() {
   );
 }
 
-async function withSignedUrls(
+async function withSignedUrls<T extends { image_path: string }>(
   client: ReturnType<typeof serverClient>,
-  rows: Array<{ id: string; image_path: string } & Record<string, unknown>>,
-) {
+  rows: T[],
+): Promise<Array<T & { signedUrl: string | null }>> {
   if (rows.length === 0) return [];
   const paths = rows.map((r) => r.image_path);
   const { data, error } = await client.storage.from("gallery").createSignedUrls(paths, SIGN_EXPIRY);

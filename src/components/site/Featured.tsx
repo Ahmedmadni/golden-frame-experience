@@ -47,7 +47,7 @@ export function Featured() {
           </p>
           <dl className="mt-10 space-y-4 border-t border-border pt-6">
             {[
-              { label: t("featured.meta.location"), value: "Villa Almasa, Riyadh" },
+              { label: t("featured.meta.location"), value: "Villa El Gouna, Red Sea" },
               { label: t("featured.meta.shots"), value: "612" },
               { label: t("featured.meta.gear"), value: "Sony A1 · FX3 · DJI Ronin 4D" },
             ].map((row) => (

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { WeddingHero } from "@/components/site/WeddingHero";
 import { HeroLens } from "@/components/site/HeroLens";
 import { GearPreview } from "@/components/site/GearPreview";
 import { About } from "@/components/site/About";
@@ -18,18 +19,20 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <HeroLens />
-      <GearPreview />
+      <WeddingHero />
       <About />
       <Services />
       <Portfolio preview />
       <MarqueeGallery />
       <Featured />
+      {/* Cinematic lens interlude */}
+      <HeroLens />
       <Awards />
       <Testimonials />
       <Packages />
+      {/* Gear showcase near the bottom */}
+      <GearPreview />
       <Contact />
     </>
   );
 }
-

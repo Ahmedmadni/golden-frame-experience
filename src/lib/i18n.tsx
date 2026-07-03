@@ -23,7 +23,7 @@ const en: Dict = {
   "about.eyebrow": "About the photographer",
   "about.title": "Twelve years spent chasing the light.",
   "about.p1":
-    "Ahmed is an award-winning photographer and cinematographer working between Riyadh, Dubai, and Milan. His work sits at the intersection of editorial precision and documentary honesty.",
+    "Ahmed is an award-winning photographer and cinematographer based in Cairo, working across Egypt and the Mediterranean — from Alexandria to El Gouna, Milan, and Dubai. His work sits at the intersection of editorial precision and documentary honesty.",
   "about.p2":
     "Clients trust the studio for wedding films that feel like cinema, brand campaigns that move product, and portraits that hold a room.",
   "stat.years": "Years behind the lens",

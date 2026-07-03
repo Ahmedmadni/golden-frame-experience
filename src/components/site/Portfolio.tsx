@@ -1,8 +1,11 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { useI18n } from "@/lib/i18n";
 import { Section, SectionHeader } from "./Section";
 import { GALLERY, CATEGORIES, type Category, type GalleryItem } from "@/lib/site-data";
+import { listPublicGallery } from "@/lib/gallery.functions";
 import { X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -11,10 +14,29 @@ export function Portfolio({ preview = true }: { preview?: boolean }) {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [active, setActive] = useState<GalleryItem | null>(null);
 
+  const listFn = useServerFn(listPublicGallery);
+  const remoteQ = useQuery({
+    queryKey: ["gallery"],
+    queryFn: () => listFn(),
+    staleTime: 60_000,
+  });
+
+  const combined = useMemo<GalleryItem[]>(() => {
+    const remote: GalleryItem[] = (remoteQ.data ?? [])
+      .filter((r) => r.signedUrl)
+      .map((r) => ({
+        src: r.signedUrl as string,
+        category: (CATEGORIES.includes(r.category as Category) ? r.category : "cinematic") as Category,
+        ratio: "portrait",
+        alt: r.title,
+      }));
+    return [...remote, ...GALLERY];
+  }, [remoteQ.data]);
+
   const items = useMemo(() => {
-    const base = filter === "all" ? GALLERY : GALLERY.filter((g) => g.category === filter);
+    const base = filter === "all" ? combined : combined.filter((g) => g.category === filter);
     return preview ? base.slice(0, 8) : base;
-  }, [filter, preview]);
+  }, [filter, preview, combined]);
 
   return (
     <Section id="work">

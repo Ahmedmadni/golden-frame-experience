@@ -15,6 +15,8 @@ import { LanguageProvider } from "@/lib/i18n";
 import { LenisProvider } from "@/components/site/Lenis";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { Cursor } from "@/components/site/Cursor";
+import { PageTransition } from "@/components/site/PageTransition";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -130,9 +132,12 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <LenisProvider />
+        <Cursor />
         <Nav />
         <main>
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
         <Toaster />

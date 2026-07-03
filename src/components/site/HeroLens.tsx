@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion, type MotionValue } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
@@ -189,23 +189,22 @@ export function HeroLens() {
 
 /* ---------- Lens SVG ---------- */
 
-type MotionValueLike = ReturnType<typeof useTransform>;
-
 function Lens({
   apertureProgress,
   galleryOpacity,
   galleryScale,
   reduce,
 }: {
-  apertureProgress: MotionValueLike;
-  galleryOpacity: MotionValueLike;
-  galleryScale: MotionValueLike;
+  apertureProgress: MotionValue<number>;
+  galleryOpacity: MotionValue<number>;
+  galleryScale: MotionValue<number>;
   reduce: boolean;
 }) {
   // Aperture blade rotation: -60deg (closed) → 0deg (open)
   const bladeAngle = useTransform(apertureProgress, [0, 1], [-60, 0]);
   const irisScale = useTransform(apertureProgress, [0, 1], [0.05, 0.82]);
   const glassOpacity = useTransform(apertureProgress, [0, 1], [1, 0.15]);
+  const bladeGroupScale = useTransform(apertureProgress, [0, 1], [1, 0.2]);
 
   const blades = [0, 40, 80, 120, 160, 200, 240, 280, 320]; // 9-blade
 
@@ -288,7 +287,7 @@ function Lens({
         {/* Blades */}
         <motion.div
           className="absolute inset-0"
-          style={{ scale: useTransform(apertureProgress, [0, 1], [1, 0.2]) }}
+          style={{ scale: bladeGroupScale }}
         >
           {blades.map((angle) => (
             <motion.div

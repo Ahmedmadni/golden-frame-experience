@@ -52,14 +52,10 @@ export const GALLERY: GalleryItem[] = [
 export const SERVICES = [
   { key: "wedding", cat: "weddings" as Category, img: weddingA, tKey: "svc.wedding" },
   { key: "engagement", cat: "engagement" as Category, img: engagement, tKey: "svc.engagement" },
-  { key: "birthday", cat: "birthday" as Category, img: birthday, tKey: "svc.birthday" },
-  { key: "corporate", cat: "corporate" as Category, img: corporate, tKey: "svc.corporate" },
-  { key: "fashion", cat: "fashion" as Category, img: fashionA, tKey: "svc.fashion" },
-  { key: "product", cat: "product" as Category, img: product, tKey: "svc.product" },
   { key: "family", cat: "family" as Category, img: family, tKey: "svc.family" },
-  { key: "graduation", cat: "graduation" as Category, img: graduation, tKey: "svc.grad" },
   { key: "newborn", cat: "newborn" as Category, img: newborn, tKey: "svc.newborn" },
-  { key: "cinematic", cat: "cinematic" as Category, img: cinematic, tKey: "svc.cinematic" },
+  { key: "birthday", cat: "birthday" as Category, img: birthday, tKey: "svc.birthday" },
+  { key: "graduation", cat: "graduation" as Category, img: graduation, tKey: "svc.grad" },
 ];
 
 export const PACKAGES = [
@@ -104,33 +100,33 @@ export const STATS = [
 
 export const TESTIMONIALS = [
   {
-    name: { en: "Farida Hassan", ar: "فريدة حسن" },
-    role: { en: "Bride, Zamalek — Cairo", ar: "عروس، الزمالك — القاهرة" },
+    name: { en: "Farida & Kareem", ar: "فريدة وكريم" },
+    role: { en: "Wedding, Maghagha — El-Minya", ar: "فرح، مغاغة — المنيا" },
     quote: {
-      en: "The film he cut for our wedding still makes my mother cry. Ahmed sees the moments no one else notices.",
-      ar: "الفيلم اللي عمله لفرحنا لسه بيبكي أمي لحد دلوقتي. أحمد بيشوف اللحظات اللي محدش بياخد باله منها.",
+      en: "The film Ahmed cut for our wedding still makes my mother cry. He sees the moments no one else notices.",
+      ar: "الفيلم اللي أحمد عمله لفرحنا لسّه بيبكّي أمي لحد دلوقتي. بيشوف اللحظات اللي محدش بياخد باله منها.",
     },
   },
   {
-    name: { en: "Marco Bianchi", ar: "ماركو بيانكي" },
-    role: { en: "Creative Director, Milano", ar: "مدير إبداعي، ميلانو" },
+    name: { en: "Nour & Family", ar: "نور والعيلة" },
+    role: { en: "Family session, El-Minya", ar: "جلسة عائلية، المنيا" },
     quote: {
-      en: "Rare combination of taste and technical rigour. Our SS26 campaign wouldn't exist without him.",
-      ar: "مزيج نادر من الذوق والدقة التقنية. حملتنا الربيعية لم تكن لتُنجز بدونه.",
+      en: "Every photo feels like a memory we already know. The kids were relaxed and the light was magic.",
+      ar: "كل صورة حسّيت إنها ذكرى بأعرفها من زمان. العيال كانوا مرتاحين والإضاءة كانت سحر.",
     },
   },
   {
-    name: { en: "Nour El Sherif", ar: "نور الشريف" },
-    role: { en: "Founder, Attar Studio — Alexandria", ar: "مؤسِّسة، عطر ستوديو — الإسكندرية" },
+    name: { en: "Mariam & Hassan", ar: "مريم وحسن" },
+    role: { en: "Engagement, Beni Mazar", ar: "خطوبة، بني مزار" },
     quote: {
-      en: "Every product shot converts. Ahmed builds imagery that sells and looks like art.",
-      ar: "كل صورة منتج بتبيع. أحمد بيصنع صور بتبيع وشكلها فن.",
+      en: "Ahmed made us feel like the only two people in the room. The album is a treasure.",
+      ar: "أحمد خلّانا حاسّين إننا لوحدنا في الكون. الألبوم كنز حقيقي.",
     },
   },
 ];
 
 export const AWARDS = [
-  "Vogue Arabia", "Harper's Bazaar Arabia", "Awwwards", "Communication Arts", "The One Show", "Behance Curated",
+  "Sony Alpha", "WPJA", "Fearless Photographers", "Junebug Weddings", "Rangefinder", "Vogue Arabia",
 ];
 
 export const CONTACT = {
@@ -141,18 +137,15 @@ export const CONTACT = {
   facebook: "https://facebook.com/ahmedalmadani",
   email: "studio@almadani.photo",
   phoneDisplay: "+20 100 000 0000",
-  city: "Cairo, Egypt",
+  city: "Maghagha, El-Minya · Egypt",
 };
 
 export const EVENT_TYPES = [
-  { value: "wedding", en: "Wedding", ar: "زفاف" },
+  { value: "wedding", en: "Wedding", ar: "فرح" },
   { value: "engagement", en: "Engagement", ar: "خطوبة" },
+  { value: "henna", en: "Henna night", ar: "ليلة الحنة" },
   { value: "birthday", en: "Birthday", ar: "عيد ميلاد" },
-  { value: "corporate", en: "Corporate", ar: "شركة" },
-  { value: "fashion", en: "Fashion", ar: "أزياء" },
-  { value: "product", en: "Product", ar: "منتجات" },
   { value: "family", en: "Family session", ar: "جلسة عائلية" },
-  { value: "newborn", en: "Newborn", ar: "أطفال" },
+  { value: "newborn", en: "Newborn", ar: "مولود جديد" },
   { value: "graduation", en: "Graduation", ar: "تخرج" },
-  { value: "cinematic", en: "Cinematic film", ar: "فيلم سينمائي" },
 ];

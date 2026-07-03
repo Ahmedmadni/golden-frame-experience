@@ -12,7 +12,7 @@ export function Contact() {
     { icon: Music, label: "TikTok", href: CONTACT.tiktok },
     { icon: Camera, label: "Snapchat", href: CONTACT.snapchat },
     { icon: Mail, label: CONTACT.email, href: `mailto:${CONTACT.email}` },
-    { icon: MapPin, label: "Cairo · Alexandria · El Gouna", href: "#" },
+    { icon: MapPin, label: "Maghagha · El-Minya · Beni Mazar", href: "#" },
   ];
 
   return (

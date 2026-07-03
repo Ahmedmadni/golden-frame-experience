@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Languages, Menu, X } from "lucide-react";
+import logoMark from "@/assets/logo-mark.png";
 
 export function Nav() {
   const { t, lang, toggle } = useI18n();
@@ -31,11 +32,15 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <Link to="/" className="group flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-full border border-gold/40 font-display text-sm text-gold transition-all group-hover:border-gold">
-            AM
-          </span>
-          <span className="hidden font-display text-sm tracking-wide sm:block">
-            Ahmed Almadani
+          <img
+            src={logoMark}
+            alt="Almadani monogram"
+            width={40}
+            height={40}
+            className="h-10 w-10 transition-transform group-hover:scale-105"
+          />
+          <span className="hidden font-display text-sm tracking-[0.15em] uppercase sm:block">
+            Almadani
           </span>
         </Link>
 

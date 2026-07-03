@@ -176,9 +176,10 @@ function Field({ label, value }: { label: string; value: string }) {
 function StatusBadge({ status }: { status: Status }) {
   const map: Record<Status, { icon: typeof Clock; cls: string }> = {
     pending: { icon: Clock, cls: "border-yellow-500/40 text-yellow-400" },
-    confirmed: { icon: Star, cls: "border-gold/50 text-gold" },
+    accepted: { icon: Star, cls: "border-gold/50 text-gold" },
     completed: { icon: CheckCircle2, cls: "border-emerald-500/40 text-emerald-400" },
-    cancelled: { icon: XCircle, cls: "border-red-500/40 text-red-400" },
+    rejected: { icon: XCircle, cls: "border-red-500/40 text-red-400" },
+    postponed: { icon: Clock, cls: "border-blue-500/40 text-blue-400" },
   };
   const { icon: Icon, cls } = map[status];
   return (

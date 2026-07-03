@@ -150,7 +150,7 @@ function BookPage() {
         </div>
         <div>
           <label className={lbl}>{t("book.form.budget")}</label>
-          <input {...register("budget")} placeholder="SAR 5,000 – 15,000" className={fld} />
+          <input {...register("budget")} placeholder="EGP 25,000 – 90,000" className={fld} />
         </div>
         <div>
           <label className={lbl}>{t("book.form.package")}</label>

@@ -5,6 +5,7 @@ import { listBookings, updateBookingStatus, getMyRole } from "@/lib/bookings.fun
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { CheckCircle2, Clock, XCircle, Star, Loader2 } from "lucide-react";
+import { AdminNav } from "@/components/site/AdminNav";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
@@ -74,7 +75,7 @@ function AdminPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 pb-24 pt-32 md:px-10">
-      <div className="mb-10 flex items-end justify-between gap-4">
+      <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <p className="mb-2 text-xs uppercase tracking-[0.3em] text-gold">Studio dashboard</p>
           <h1 className="font-display text-4xl md:text-5xl">Bookings</h1>
@@ -86,6 +87,8 @@ function AdminPage() {
           Refresh
         </button>
       </div>
+      <AdminNav current="bookings" />
+
 
       <div className="mb-10 grid grid-cols-2 gap-3 md:grid-cols-4">
         {STATUSES.map((s) => (

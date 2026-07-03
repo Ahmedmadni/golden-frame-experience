@@ -221,7 +221,7 @@ const ar: Dict = {
   "book.title": "احجز جلسة",
   "book.sub": "أخبرنا عن مناسبتك. يرد الاستوديو خلال 24 ساعة.",
   "book.form.name": "الاسم الكامل",
-  "book.form.phone": "رقم الجوال",
+  "book.form.phone": "رقم الموبايل",
   "book.form.email": "البريد الإلكتروني",
   "book.form.eventType": "نوع المناسبة",
   "book.form.date": "التاريخ",

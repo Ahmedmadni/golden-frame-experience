@@ -141,3 +141,12 @@
 /* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+/* Testimonial marquee (list is duplicated → shift by 50%) */
+@keyframes testimonial-scroll { to { transform: translateX(-50%); } }
+
+/* Hide native cursor when custom cursor is enabled (desktop hover only) */
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: none; }
+  html a, html button, html input, html textarea, html select, html [role="button"] { cursor: none; }
+}

@@ -16,8 +16,8 @@ export const Route = createFileRoute("/_authenticated/admin")({
   ),
 });
 
-type Status = "pending" | "confirmed" | "completed" | "cancelled";
-const STATUSES: Status[] = ["pending", "confirmed", "completed", "cancelled"];
+type Status = "pending" | "accepted" | "completed" | "rejected" | "postponed";
+const STATUSES: Status[] = ["pending", "accepted", "completed", "postponed", "rejected"];
 
 function AdminPage() {
   const router = useRouter();
@@ -69,7 +69,7 @@ function AdminPage() {
   const bookings = bookingsQ.data ?? [];
   const counts = STATUSES.reduce<Record<Status, number>>(
     (acc, s) => ({ ...acc, [s]: bookings.filter((b) => b.status === s).length }),
-    { pending: 0, confirmed: 0, completed: 0, cancelled: 0 },
+    { pending: 0, accepted: 0, completed: 0, rejected: 0, postponed: 0 },
   );
 
   return (

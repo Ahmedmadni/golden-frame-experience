@@ -22,7 +22,7 @@ export const listBookings = createServerFn({ method: "GET" })
 
 const UpdateStatusSchema = z.object({
   id: z.string().uuid(),
-  status: z.enum(["pending", "confirmed", "completed", "cancelled"]),
+  status: z.enum(["pending", "accepted", "completed", "rejected", "postponed"]),
 });
 
 export const updateBookingStatus = createServerFn({ method: "POST" })

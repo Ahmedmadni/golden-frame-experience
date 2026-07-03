@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PosesRouteImport } from './routes/poses'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -18,6 +19,11 @@ import { Route as AuthenticatedMyBookingsRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
 
+const PosesRoute = PosesRouteImport.update({
+  id: '/poses',
+  path: '/poses',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/portfolio': typeof PortfolioRoute
+  '/poses': typeof PosesRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/my-bookings': typeof AuthenticatedMyBookingsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/portfolio': typeof PortfolioRoute
+  '/poses': typeof PosesRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/my-bookings': typeof AuthenticatedMyBookingsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
   '/portfolio': typeof PortfolioRoute
+  '/poses': typeof PosesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/my-bookings': typeof AuthenticatedMyBookingsRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/book'
     | '/portfolio'
+    | '/poses'
     | '/admin'
     | '/my-bookings'
     | '/admin/gallery'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/book'
     | '/portfolio'
+    | '/poses'
     | '/admin'
     | '/my-bookings'
     | '/admin/gallery'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/book'
     | '/portfolio'
+    | '/poses'
     | '/_authenticated/admin'
     | '/_authenticated/my-bookings'
     | '/_authenticated/admin/gallery'
@@ -125,10 +137,18 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BookRoute: typeof BookRoute
   PortfolioRoute: typeof PortfolioRoute
+  PosesRoute: typeof PosesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/poses': {
+      id: '/poses'
+      path: '/poses'
+      fullPath: '/poses'
+      preLoaderRoute: typeof PosesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio': {
       id: '/portfolio'
       path: '/portfolio'
@@ -218,6 +238,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BookRoute: BookRoute,
   PortfolioRoute: PortfolioRoute,
+  PosesRoute: PosesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

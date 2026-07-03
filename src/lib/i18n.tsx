@@ -153,6 +153,17 @@ const en: Dict = {
   "svc.newborn.desc": "Gentle in-home sessions with soft natural light.",
   "svc.cinematic.title": "Cinematic",
   "svc.cinematic.desc": "Music videos, brand films, documentary edits.",
+
+  "nav.poses": "Poses",
+  "poses.eyebrow": "Wedding pose guide",
+  "poses.title": "Cinematic wedding poses, curated for real couples.",
+  "poses.sub":
+    "Nine directed-yet-natural poses we return to on every wedding — from the forehead kiss to the veil twirl. Save it, share it with your partner, and we'll shoot it together.",
+  "poses.meta.gear": "Sony A1 · 35mm · 85mm · 135mm",
+  "poses.meta.light": "Golden hour · warm tungsten · off-camera flash",
+  "poses.meta.style": "Editorial · documentary · cinematic",
+  "poses.cta.title": "Let's shoot these together.",
+  "poses.cta.sub": "Book a consultation and we'll build a shot list around your story.",
 };
 
 const ar: Dict = {
@@ -304,6 +315,17 @@ const ar: Dict = {
   "svc.newborn.desc": "جلسات منزلية لطيفة بإضاءة طبيعية ناعمة.",
   "svc.cinematic.title": "السينمائي",
   "svc.cinematic.desc": "فيديوهات موسيقية، أفلام علامات، مونتاج وثائقي.",
+
+  "nav.poses": "الوضعيات",
+  "poses.eyebrow": "دليل وضعيات الأفراح",
+  "poses.title": "وضعيات تصوير سينمائية للعرسان الحقيقيين.",
+  "poses.sub":
+    "تسع وضعيات موجّهة لكنها طبيعية بنرجعلها في كل فرح — من قبلة الجبين لدوران الطرحة. احفظها، شاركها مع شريكك، وهنصوّرها سوا.",
+  "poses.meta.gear": "Sony A1 · 35mm · 85mm · 135mm",
+  "poses.meta.light": "الغروب الذهبي · إضاءة تنجستون دافئة · فلاش خارجي",
+  "poses.meta.style": "تحريري · وثائقي · سينمائي",
+  "poses.cta.title": "خلينا نصوّرهم مع بعض.",
+  "poses.cta.sub": "احجز استشارة وهنبني لك قائمة لقطات مخصّصة لقصتكم.",
 };
 
 const dicts: Record<Lang, Dict> = { en, ar };

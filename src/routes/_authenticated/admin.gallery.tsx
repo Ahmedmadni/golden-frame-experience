@@ -58,7 +58,7 @@ function GalleryAdmin() {
   };
 
   const updateMut = useMutation({
-    mutationFn: (v: Parameters<typeof updateFn>[0]["data"]) => updateFn({ data: v }),
+    mutationFn: (v: { id: string; featured?: boolean; published?: boolean }) => updateFn({ data: v }),
     onSuccess: () => {
       invalidate();
       toast.success("Updated");

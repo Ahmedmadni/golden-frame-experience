@@ -113,6 +113,8 @@ const en: Dict = {
 
   "portfolio.title.page": "Portfolio",
   "portfolio.sub.page": "A living archive of frames from the studio.",
+  "marquee.eyebrow": "In motion",
+  "marquee.title": "Frames that never stop moving.",
 
   "cat.weddings": "Weddings",
   "cat.engagement": "Engagement",
@@ -256,6 +258,8 @@ const ar: Dict = {
 
   "portfolio.title.page": "المعرض",
   "portfolio.sub.page": "أرشيف حي من لقطات الاستوديو.",
+  "marquee.eyebrow": "في حركة دائمة",
+  "marquee.title": "لقطات لا تتوقف عن الحركة.",
 
   "cat.weddings": "أعراس",
   "cat.engagement": "خطوبة",

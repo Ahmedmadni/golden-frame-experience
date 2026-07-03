@@ -54,7 +54,7 @@ export const PACKAGES = [
   {
     key: "essential",
     tKey: "packages.essential",
-    price: 2400,
+    price: 15000,
     features: {
       en: ["Up to 3 hours coverage", "1 photographer", "80 edited photos", "Online gallery", "1 week delivery"],
       ar: ["حتى 3 ساعات تصوير", "مصوّر واحد", "80 صورة معدّلة", "معرض إلكتروني", "التسليم خلال أسبوع"],
@@ -64,17 +64,17 @@ export const PACKAGES = [
   {
     key: "signature",
     tKey: "packages.signature",
-    price: 6900,
+    price: 45000,
     features: {
-      en: ["Up to 8 hours coverage", "Photographer + assistant", "300 edited photos", "Cinematic teaser (60s)", "Premium prints", "3 day delivery"],
-      ar: ["حتى 8 ساعات تصوير", "مصوّر + مساعد", "300 صورة معدّلة", "تيزر سينمائي (60 ثانية)", "طباعة فاخرة", "التسليم خلال 3 أيام"],
+      en: ["Up to 8 hours coverage", "Photographer + assistant", "300 edited photos", "Cinematic teaser (60s)", "Premium prints album", "3 day delivery"],
+      ar: ["حتى 8 ساعات تصوير", "مصوّر + مساعد", "300 صورة معدّلة", "تيزر سينمائي (60 ثانية)", "ألبوم طباعة فاخر", "التسليم خلال 3 أيام"],
     },
     popular: true,
   },
   {
     key: "cinematic",
     tKey: "packages.cinematic",
-    price: 14500,
+    price: 95000,
     features: {
       en: ["Multi-day production", "Full film crew", "600+ edited photos", "4-minute hero film", "Drone + gimbal", "Same-day highlights"],
       ar: ["إنتاج متعدد الأيام", "فريق تصوير كامل", "600+ صورة معدّلة", "فيلم رئيسي 4 دقائق", "درون + جيمبال", "أبرز اللحظات في نفس اليوم"],
@@ -92,11 +92,11 @@ export const STATS = [
 
 export const TESTIMONIALS = [
   {
-    name: { en: "Layla Al Faisal", ar: "ليلى الفيصل" },
-    role: { en: "Bride, Jeddah", ar: "عروس، جدة" },
+    name: { en: "Farida Hassan", ar: "فريدة حسن" },
+    role: { en: "Bride, Zamalek — Cairo", ar: "عروس، الزمالك — القاهرة" },
     quote: {
       en: "The film he cut for our wedding still makes my mother cry. Ahmed sees the moments no one else notices.",
-      ar: "الفيلم الذي صنعه لزفافنا لا يزال يُبكي أمي. أحمد يرى اللحظات التي لا يلاحظها أحد.",
+      ar: "الفيلم اللي عمله لفرحنا لسه بيبكي أمي لحد دلوقتي. أحمد بيشوف اللحظات اللي محدش بياخد باله منها.",
     },
   },
   {
@@ -108,26 +108,28 @@ export const TESTIMONIALS = [
     },
   },
   {
-    name: { en: "Nora Al Harbi", ar: "نورة الحربي" },
-    role: { en: "Founder, Attar Studio", ar: "مؤسِّسة، عطر ستوديو" },
+    name: { en: "Nour El Sherif", ar: "نور الشريف" },
+    role: { en: "Founder, Attar Studio — Alexandria", ar: "مؤسِّسة، عطر ستوديو — الإسكندرية" },
     quote: {
       en: "Every product shot converts. Ahmed builds imagery that sells and looks like art.",
-      ar: "كل صورة منتج تحوّل. أحمد يصنع صورًا تبيع وتبدو كالفن.",
+      ar: "كل صورة منتج بتبيع. أحمد بيصنع صور بتبيع وشكلها فن.",
     },
   },
 ];
 
 export const AWARDS = [
-  "Vogue Arabia", "Harper's Bazaar", "Awwwards", "Communication Arts", "The One Show", "Behance Curated",
+  "Vogue Arabia", "Harper's Bazaar Arabia", "Awwwards", "Communication Arts", "The One Show", "Behance Curated",
 ];
 
 export const CONTACT = {
-  whatsapp: "https://wa.me/966500000000",
+  whatsapp: "https://wa.me/201000000000",
   instagram: "https://instagram.com/ahmedalmadani",
   tiktok: "https://tiktok.com/@ahmedalmadani",
   snapchat: "https://snapchat.com/add/ahmedalmadani",
   facebook: "https://facebook.com/ahmedalmadani",
   email: "studio@almadani.photo",
+  phoneDisplay: "+20 100 000 0000",
+  city: "Cairo, Egypt",
 };
 
 export const EVENT_TYPES = [

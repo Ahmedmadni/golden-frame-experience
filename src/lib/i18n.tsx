@@ -23,7 +23,7 @@ const en: Dict = {
   "about.eyebrow": "About the photographer",
   "about.title": "Twelve years spent chasing the light.",
   "about.p1":
-    "Ahmed is an award-winning photographer and cinematographer working between Riyadh, Dubai, and Milan. His work sits at the intersection of editorial precision and documentary honesty.",
+    "Ahmed is an award-winning photographer and cinematographer based in Cairo, working across Egypt and the Mediterranean — from Alexandria to El Gouna, Milan, and Dubai. His work sits at the intersection of editorial precision and documentary honesty.",
   "about.p2":
     "Clients trust the studio for wedding films that feel like cinema, brand campaigns that move product, and portraits that hold a room.",
   "stat.years": "Years behind the lens",
@@ -41,7 +41,7 @@ const en: Dict = {
   "portfolio.all": "All",
 
   "featured.eyebrow": "Featured project",
-  "featured.title": "Villa Almasa · A three-day wedding film",
+  "featured.title": "Villa El Gouna · A three-day wedding film",
   "featured.desc":
     "Documentary coverage across the reception, ceremony, and reveal — shot on Sony A1 + FX3, cut into a 4-minute cinematic edit.",
   "featured.meta.location": "Location",
@@ -65,7 +65,7 @@ const en: Dict = {
   "packages.signature.desc": "Weddings, fashion editorials, brand campaigns.",
   "packages.cinematic.name": "Cinematic",
   "packages.cinematic.desc": "Full-scale productions with film crew and dailies.",
-  "packages.currency": "SAR",
+  "packages.currency": "EGP",
   "packages.from": "from",
   "packages.perProject": "/ project",
 
@@ -166,7 +166,7 @@ const ar: Dict = {
   "about.eyebrow": "عن المصوّر",
   "about.title": "اثنا عشر عامًا في مطاردة الضوء.",
   "about.p1":
-    "أحمد مصوّر ومخرج حائز على جوائز، يعمل بين الرياض ودبي وميلانو. أعماله تقع في تقاطع الدقة التحريرية والصدق الوثائقي.",
+    "أحمد مصوّر ومخرج حائز على جوائز، مقيم في القاهرة ويعمل بين مصر والبحر المتوسط — من الإسكندرية والجونة إلى ميلانو ودبي. أعماله تقع في تقاطع الدقة التحريرية والصدق الوثائقي.",
   "about.p2":
     "يثق العملاء بالاستوديو في أفلام الأعراس التي تشبه السينما، والحملات التي تحرّك المنتجات، والبورتريهات التي تُسكِت الغرفة.",
   "stat.years": "سنوات خلف العدسة",
@@ -184,9 +184,9 @@ const ar: Dict = {
   "portfolio.all": "الكل",
 
   "featured.eyebrow": "مشروع مميز",
-  "featured.title": "فيلا الماسة · فيلم زفاف لثلاثة أيام",
+  "featured.title": "فيلا الجونة · فيلم زفاف لثلاثة أيام",
   "featured.desc":
-    "تغطية وثائقية لحفلة الاستقبال والعقد والزفة — تم التصوير بكاميرات Sony A1 + FX3 مع مونتاج سينمائي لمدة 4 دقائق.",
+    "تغطية وثائقية لحفلة الاستقبال والكتب والزفة — تم التصوير بكاميرات Sony A1 + FX3 مع مونتاج سينمائي لمدة 4 دقائق.",
   "featured.meta.location": "الموقع",
   "featured.meta.shots": "عدد الصور",
   "featured.meta.gear": "المعدات",
@@ -208,7 +208,7 @@ const ar: Dict = {
   "packages.signature.desc": "أعراس، تصوير أزياء تحريري، حملات علامات.",
   "packages.cinematic.name": "السينمائية",
   "packages.cinematic.desc": "إنتاجات كاملة بفريق سينما ومقاطع يومية.",
-  "packages.currency": "ر.س",
+  "packages.currency": "ج.م",
   "packages.from": "تبدأ من",
   "packages.perProject": "/ مشروع",
 
@@ -221,7 +221,7 @@ const ar: Dict = {
   "book.title": "احجز جلسة",
   "book.sub": "أخبرنا عن مناسبتك. يرد الاستوديو خلال 24 ساعة.",
   "book.form.name": "الاسم الكامل",
-  "book.form.phone": "رقم الجوال",
+  "book.form.phone": "رقم الموبايل",
   "book.form.email": "البريد الإلكتروني",
   "book.form.eventType": "نوع المناسبة",
   "book.form.date": "التاريخ",

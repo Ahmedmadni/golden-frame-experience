@@ -65,7 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Ahmed Almadani · Cinematic Photography Studio" },
-      { name: "description", content: "Award-winning photographer & cinematographer. Weddings, fashion, brand campaigns and cinematic films crafted between Riyadh, Dubai, and Milan." },
+      { name: "description", content: "Award-winning photographer & cinematographer based in Cairo, Egypt. Weddings, fashion, and brand films crafted across Cairo, Alexandria, and El Gouna." },
       { name: "author", content: "Ahmed Almadani" },
       { name: "theme-color", content: "#080808" },
       { property: "og:title", content: "Ahmed Almadani · Cinematic Photography" },
@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           image: "/hero.jpg",
           "@id": "https://almadani.photo",
           priceRange: "$$$",
-          address: { "@type": "PostalAddress", addressLocality: "Riyadh", addressCountry: "SA" },
+          address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" },
           sameAs: [
             "https://instagram.com/ahmedalmadani",
             "https://tiktok.com/@ahmedalmadani",

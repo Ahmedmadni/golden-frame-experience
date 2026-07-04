@@ -4,8 +4,11 @@ import { HeroLens } from "@/components/site/HeroLens";
 import { GearPreview } from "@/components/site/GearPreview";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
+import { WeddingStories } from "@/components/site/WeddingStories";
 import { Portfolio } from "@/components/site/Portfolio";
 import { MarqueeGallery } from "@/components/site/MarqueeGallery";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { LuxuryAlbums } from "@/components/site/LuxuryAlbums";
 import { Featured } from "@/components/site/Featured";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Awards } from "@/components/site/Awards";
@@ -22,8 +25,11 @@ function Index() {
       <WeddingHero />
       <About />
       <Services />
+      <WeddingStories />
       <Portfolio preview />
       <MarqueeGallery />
+      <BeforeAfter />
+      <LuxuryAlbums />
       <Featured />
       {/* Cinematic lens interlude */}
       <HeroLens />

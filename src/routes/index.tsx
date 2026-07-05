@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WeddingHero } from "@/components/site/WeddingHero";
 import { HeroLens } from "@/components/site/HeroLens";
-import { GearPreview } from "@/components/site/GearPreview";
+import { ApertureScroll } from "@/components/site/ApertureScroll";
+import { CameraBag } from "@/components/site/CameraBag";
+import { WeddingTimeline } from "@/components/site/WeddingTimeline";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { WeddingStories } from "@/components/site/WeddingStories";
@@ -25,19 +27,20 @@ function Index() {
       <WeddingHero />
       <About />
       <Services />
+      <WeddingTimeline />
       <WeddingStories />
       <Portfolio preview />
       <MarqueeGallery />
       <BeforeAfter />
+      <ApertureScroll />
       <LuxuryAlbums />
       <Featured />
       {/* Cinematic lens interlude */}
       <HeroLens />
+      <CameraBag />
       <Awards />
       <Testimonials />
       <Packages />
-      {/* Gear showcase near the bottom */}
-      <GearPreview />
       <Contact />
     </>
   );

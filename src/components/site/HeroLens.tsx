@@ -7,6 +7,7 @@ import weddingA from "@/assets/gallery-wedding-1.jpg";
 import weddingB from "@/assets/gallery-wedding-2.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 import engagement from "@/assets/gallery-engagement.jpg";
+import heroLensImg from "@/assets/gear/hero-lens.jpg";
 
 /**
  * Cinematic wedding hero.

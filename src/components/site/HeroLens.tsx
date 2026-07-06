@@ -136,6 +136,7 @@ export function HeroLens() {
               <video
                 ref={videoRef}
                 src={lensVideo.url}
+                poster={heroLensImg}
                 muted
                 playsInline
                 preload="auto"

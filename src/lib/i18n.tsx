@@ -15,7 +15,7 @@ const en: Dict = {
   "hero.eyebrow": "Wedding & Family Photography · Maghagha, Minya",
   "hero.title": "We frame the most beautiful moments of your life.",
   "hero.sub":
-    "Cinematic wedding, engagement, birthday and family photography for Maghagha, El-Minya and beyond — captured with Sony Alpha cinema gear.",
+    "Cinematic wedding, engagement, birthday and family photography for Maghagha, El-Minya and beyond — captured with Canon EOS R and Nikon Z cinema gear.",
   "hero.cta.book": "Book your session",
   "hero.cta.work": "View our weddings",
   "hero.scroll": "Scroll",
@@ -25,7 +25,7 @@ const en: Dict = {
   "about.p1":
     "Ahmed Almadani is a wedding and family photographer based in Maghagha, El-Minya, serving couples and families across Upper Egypt. His work is built on quiet observation, warm light, and honest emotion.",
   "about.p2":
-    "From the henna night to the first dance, from the newborn's first week to the graduation cap toss — every session is shot on Sony Alpha cinema bodies and delivered as heirloom albums and cinematic films.",
+    "From the henna night to the first dance, from the newborn's first week to the graduation cap toss — every session is shot on Canon EOS R and Nikon Z cinema bodies and delivered as heirloom albums and cinematic films.",
   "stat.years": "Years behind the lens",
   "stat.clients": "Families served",
   "stat.projects": "Weddings delivered",
@@ -43,7 +43,7 @@ const en: Dict = {
   "featured.eyebrow": "Featured wedding",
   "featured.title": "A three-day wedding in Maghagha, El-Minya",
   "featured.desc":
-    "Documentary coverage across the henna night, the ketb ceremony and the wedding reception — shot on Sony A1 + FX3, delivered as a 4-minute cinematic film and a leather-bound album.",
+    "Documentary coverage across the henna night, the ketb ceremony and the wedding reception — shot on Canon R5 + Nikon Z9, delivered as a 4-minute cinematic film and a leather-bound album.",
   "featured.meta.location": "Location",
   "featured.meta.shots": "Frames delivered",
   "featured.meta.gear": "Gear",
@@ -117,8 +117,8 @@ const en: Dict = {
   "marquee.title": "Moments that never stop moving.",
 
   "gear.eyebrow": "The gear",
-  "gear.title": "Shot on Sony Alpha cinema kit.",
-  "gear.sub": "Professional bodies and G Master lenses — the same tools trusted by Vogue and Sony Alpha ambassadors worldwide.",
+  "gear.title": "Shot on Canon EOS R Shot on Sony Alpha cinema kit. Nikon Z cinema kit.",
+  "gear.sub": "Professional Canon RF L and Nikon Z S-line lenses — the same tools trusted by Vogue and world-class wedding photographers.",
   "gear.cameras": "Cameras",
   "gear.lenses": "Lenses",
 
@@ -159,7 +159,7 @@ const en: Dict = {
   "poses.title": "Cinematic wedding poses, curated for real couples.",
   "poses.sub":
     "Nine directed-yet-natural poses we return to on every wedding — from the forehead kiss to the veil twirl. Save it, share it with your partner, and we'll shoot it together.",
-  "poses.meta.gear": "Sony A1 · 35mm · 85mm · 135mm",
+  "poses.meta.gear": "Canon R5 · RF 35mm · RF 85mm · RF 135mm",
   "poses.meta.light": "Golden hour · warm tungsten · off-camera flash",
   "poses.meta.style": "Editorial · documentary · cinematic",
   "poses.cta.title": "Let's shoot these together.",
@@ -177,7 +177,7 @@ const ar: Dict = {
   "hero.eyebrow": "تصوير أفراح ومناسبات · مغاغة، المنيا",
   "hero.title": "نوثّق أجمل لحظات حياتكم.",
   "hero.sub":
-    "تصوير أفراح، خطوبة، أعياد ميلاد ومناسبات عائلية بأسلوب سينمائي فاخر — لأهالي مغاغة والمنيا وصعيد مصر، بكاميرات Sony Alpha السينمائية.",
+    "تصوير أفراح، خطوبة، أعياد ميلاد ومناسبات عائلية بأسلوب سينمائي فاخر — لأهالي مغاغة والمنيا وصعيد مصر، بكاميرات Canon EOS R و Nikon Z السينمائية.",
   "hero.cta.book": "احجز جلستك",
   "hero.cta.work": "شاهد أعمالنا",
   "hero.scroll": "مرّر",
@@ -187,7 +187,7 @@ const ar: Dict = {
   "about.p1":
     "أحمد المدني مصوّر أفراح وعائلات مقيم في مغاغة بمحافظة المنيا، يخدم العرسان والعائلات في صعيد مصر كله. أسلوبه قائم على الملاحظة الهادئة، الضوء الدافئ، والمشاعر الصادقة.",
   "about.p2":
-    "من ليلة الحنة لأول رقصة، ومن أول أسبوع للمولود لحفلة التخرج — كل جلسة بتتصوّر بكاميرات Sony Alpha السينمائية، وبتتسلّم كألبوم فاخر وفيلم سينمائي.",
+    "من ليلة الحنة لأول رقصة، ومن أول أسبوع للمولود لحفلة التخرج — كل جلسة بتتصوّر بكاميرات Canon EOS R و Nikon Z السينمائية، وبتتسلّم كألبوم فاخر وفيلم سينمائي.",
   "stat.years": "سنة خلف العدسة",
   "stat.clients": "عائلة تم تصويرها",
   "stat.projects": "فرح تم توثيقه",
@@ -205,7 +205,7 @@ const ar: Dict = {
   "featured.eyebrow": "فرح مميّز",
   "featured.title": "فرح ثلاثة أيام في مغاغة، المنيا",
   "featured.desc":
-    "تغطية وثائقية لليلة الحنة، الكتب، وحفلة الاستقبال — بكاميرات Sony A1 + FX3، مع فيلم سينمائي 4 دقائق وألبوم جلد فاخر.",
+    "تغطية وثائقية لليلة الحنة، الكتب، وحفلة الاستقبال — بكاميرات Canon R5 + Nikon Z9، مع فيلم سينمائي 4 دقائق وألبوم جلد فاخر.",
   "featured.meta.location": "المكان",
   "featured.meta.shots": "عدد الصور",
   "featured.meta.gear": "المعدات",
@@ -279,8 +279,8 @@ const ar: Dict = {
   "marquee.title": "لحظات لا تتوقف عن الحركة.",
 
   "gear.eyebrow": "المعدّات",
-  "gear.title": "بنصوّر بكاميرات Sony Alpha السينمائية.",
-  "gear.sub": "أجسام كاميرات احترافية وعدسات G Master — نفس الأدوات اللي بيستخدمها كبار مصوّري Vogue و Sony Alpha حول العالم.",
+  "gear.title": "بنصوّر بكاميرات Canon EOS R و Nikon Z السينمائية.",
+  "gear.sub": "أجسام كاميرات احترافية وعدسات Canon RF L و Nikon Z S-line — نفس الأدوات اللي بيستخدمها كبار مصوّري Vogue حول العالم.",
   "gear.cameras": "الكاميرات",
   "gear.lenses": "العدسات",
 
@@ -321,7 +321,7 @@ const ar: Dict = {
   "poses.title": "وضعيات تصوير سينمائية للعرسان الحقيقيين.",
   "poses.sub":
     "تسع وضعيات موجّهة لكنها طبيعية بنرجعلها في كل فرح — من قبلة الجبين لدوران الطرحة. احفظها، شاركها مع شريكك، وهنصوّرها سوا.",
-  "poses.meta.gear": "Sony A1 · 35mm · 85mm · 135mm",
+  "poses.meta.gear": "Canon R5 · RF 35mm · RF 85mm · RF 135mm",
   "poses.meta.light": "الغروب الذهبي · إضاءة تنجستون دافئة · فلاش خارجي",
   "poses.meta.style": "تحريري · وثائقي · سينمائي",
   "poses.cta.title": "خلينا نصوّرهم مع بعض.",

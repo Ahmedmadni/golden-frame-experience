@@ -22,6 +22,7 @@ export function HeroLens() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
   const targetTimeRef = useRef(0);
+  const [videoReady, setVideoReady] = useState(false);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { ArrowRight, ArrowDown } from "lucide-react";
@@ -22,6 +22,7 @@ export function HeroLens() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
   const targetTimeRef = useRef(0);
+  const [videoReady, setVideoReady] = useState(false);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
@@ -133,6 +134,18 @@ export function HeroLens() {
                   "inset 0 0 60px rgba(0,0,0,0.9), 0 40px 120px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04)",
               }}
             >
+              {/* Placeholder / blur while video loads */}
+              <div
+                className="absolute inset-0 transition-opacity duration-700"
+                style={{ opacity: videoReady ? 0 : 1 }}
+              >
+                <img
+                  src={heroLensImg}
+                  alt=""
+                  className="h-full w-full object-cover blur-md scale-105"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
               <video
                 ref={videoRef}
                 src={lensVideo.url}
@@ -142,7 +155,9 @@ export function HeroLens() {
                 preload="auto"
                 // Prevent iOS Safari from starting playback on tap
                 autoPlay={false}
-                className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 object-cover"
+                onLoadedData={() => setVideoReady(true)}
+                className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-700"
+                style={{ opacity: videoReady ? 1 : 0 }}
               />
               <div
                 className="pointer-events-none absolute inset-0"

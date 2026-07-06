@@ -4,15 +4,15 @@ import { Section, SectionHeader } from "./Section";
 import { Camera, Aperture } from "lucide-react";
 
 const CAMERAS = [
-  { name: "Sony A1", spec: "50 MP · 8K · 30fps", role: { en: "Primary body", ar: "الكاميرا الرئيسية" } },
-  { name: "Sony FX3", spec: "Full-frame cinema · 4K120", role: { en: "Cinema film", ar: "التصوير السينمائي" } },
+  { name: "Canon EOS R5", spec: "45 MP · 8K RAW · 20fps", role: { en: "Primary body", ar: "الكاميرا الرئيسية" } },
+  { name: "Nikon Z9", spec: "45.7 MP · 8K · Cinema", role: { en: "Cinema film", ar: "التصوير السينمائي" } },
 ];
 
 const LENSES = [
-  { name: "Sony 85mm f/1.4 GM", spec: "Portrait · bokeh king", role: { en: "Bride portraits", ar: "بورتريه العروسة" } },
-  { name: "Sony 50mm f/1.2 GM", spec: "Reportage · low light", role: { en: "Ceremony reportage", ar: "توثيق الكتب" } },
-  { name: "Sony 24-70mm f/2.8 GM II", spec: "Wide to standard zoom", role: { en: "Reception coverage", ar: "تغطية الاستقبال" } },
-  { name: "Sony 70-200mm f/2.8 GM II", spec: "Telephoto · candid moments", role: { en: "Candid moments", ar: "لحظات عفوية" } },
+  { name: "Canon RF 85mm f/1.2 L", spec: "Portrait · bokeh king", role: { en: "Bride portraits", ar: "بورتريه العروسة" } },
+  { name: "Canon RF 50mm f/1.2 L", spec: "Reportage · low light", role: { en: "Ceremony reportage", ar: "توثيق الكتب" } },
+  { name: "Canon RF 24-70mm f/2.8 L", spec: "Wide to standard zoom", role: { en: "Reception coverage", ar: "تغطية الاستقبال" } },
+  { name: "Nikon Z 70-200mm f/2.8 S", spec: "Telephoto · candid moments", role: { en: "Candid moments", ar: "لحظات عفوية" } },
 ];
 
 export function GearPreview() {

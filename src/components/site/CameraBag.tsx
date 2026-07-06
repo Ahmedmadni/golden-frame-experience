@@ -10,11 +10,26 @@ import family from "@/assets/gallery-family.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 import extra2 from "@/assets/gallery-extra-2.jpg";
 
+import canonR5 from "@/assets/gear/canon-r5.jpg";
+import canonR3 from "@/assets/gear/canon-r3.jpg";
+import nikonZ9 from "@/assets/gear/nikon-z9.jpg";
+import canonRF50 from "@/assets/gear/canon-rf-50.jpg";
+import canonRF85 from "@/assets/gear/canon-rf-85.jpg";
+import canonRF2470 from "@/assets/gear/canon-rf-2470.jpg";
+import canonRF70200 from "@/assets/gear/canon-rf-70200.jpg";
+import nikonZ1424 from "@/assets/gear/nikon-z-1424.jpg";
+import godoxAd200 from "@/assets/gear/godox-ad200.jpg";
+import profotoB10x from "@/assets/gear/profoto-b10x.jpg";
+import aputure300x from "@/assets/gear/aputure-300x.jpg";
+import djiRs4 from "@/assets/gear/dji-rs4.jpg";
+import djiRonin4d from "@/assets/gear/dji-ronin-4d.jpg";
+
 type Item = {
   key: string;
   category: "camera" | "lens" | "light" | "stab";
   name: string;
   spec: string;
+  image: string;
   ar: { why: string; use: string };
   en: { why: string; use: string };
   samples: string[];
@@ -22,79 +37,79 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    key: "r5", category: "camera", name: "Canon EOS R5", spec: "45 MP · 8K RAW · 20fps",
+    key: "r5", category: "camera", name: "Canon EOS R5", spec: "45 MP · 8K RAW · 20fps", image: canonR5,
     ar: { why: "الكاميرا الرئيسية لتوثيق الزفاف بأعلى دقة وتركيز Dual Pixel خارق.", use: "تغطية الكتب والزفة واللحظات السريعة." },
     en: { why: "Primary body — 45 MP, Dual Pixel AF II, huge dynamic range.", use: "Ceremony, first dance, fast candid moments." },
     samples: [weddingA, weddingB, engagement],
   },
   {
-    key: "r3", category: "camera", name: "Canon EOS R3", spec: "24 MP · Stacked · 30fps",
+    key: "r3", category: "camera", name: "Canon EOS R3", spec: "24 MP · Stacked · 30fps", image: canonR3,
     ar: { why: "كاميرا احترافية للأداء العالي في الإضاءة المنخفضة داخل القاعات.", use: "الحفلات الليلية والرقصة الأولى." },
     en: { why: "Stacked sensor beast for low-light reception halls.", use: "Reception, first dance, night ceremonies." },
     samples: [family, extra1, extra2],
   },
   {
-    key: "z9", category: "camera", name: "Nikon Z9", spec: "45.7 MP · 8K · Cinema",
+    key: "z9", category: "camera", name: "Nikon Z9", spec: "45.7 MP · 8K · Cinema", image: nikonZ9,
     ar: { why: "كاميرا سينمائية لتصوير فيلم الزفاف بجودة أفلام هوليوود.", use: "الفيلم السينمائي وسلوموشن الرقص." },
     en: { why: "Cinema-grade body for the wedding film — 8K RAW N-RAW.", use: "Wedding film, slow-motion dance, cinematic details." },
     samples: [weddingB, engagement, family],
   },
   {
-    key: "50rf", category: "lens", name: "Canon RF 50mm f/1.2 L", spec: "Prime · Reportage",
+    key: "50rf", category: "lens", name: "Canon RF 50mm f/1.2 L", spec: "Prime · Reportage", image: canonRF50,
     ar: { why: "عدسة الحكاية — تلتقط اللحظة كما تراها العين تماماً.", use: "التوثيق داخل القاعة والإضاءة المنخفضة." },
     en: { why: "Storyteller prime — sees the room the way the eye does.", use: "Indoor reportage, low light." },
     samples: [weddingA, engagement],
   },
   {
-    key: "85rf", category: "lens", name: "Canon RF 85mm f/1.2 L", spec: "Portrait · Bokeh King",
+    key: "85rf", category: "lens", name: "Canon RF 85mm f/1.2 L", spec: "Portrait · Bokeh King", image: canonRF85,
     ar: { why: "ملك البورتريه — بوكيه ذائب وعزل خيالي للعروسة.", use: "بورتريه العروسة والعريس والخطوبة." },
     en: { why: "Portrait king — creamy bokeh, dreamy separation.", use: "Bride portraits, engagement, couple sessions." },
     samples: [weddingB, engagement, family],
   },
   {
-    key: "2470rf", category: "lens", name: "Canon RF 24-70mm f/2.8 L", spec: "Standard Zoom",
+    key: "2470rf", category: "lens", name: "Canon RF 24-70mm f/2.8 L", spec: "Standard Zoom", image: canonRF2470,
     ar: { why: "العدسة العملية لكل المواقف داخل الاستقبال.", use: "تغطية الاستقبال والمجموعات العائلية." },
     en: { why: "Workhorse zoom for reception coverage.", use: "Reception, group family shots." },
     samples: [extra1, family],
   },
   {
-    key: "70200rf", category: "lens", name: "Canon RF 70-200mm f/2.8 L", spec: "Telephoto",
+    key: "70200rf", category: "lens", name: "Canon RF 70-200mm f/2.8 L", spec: "Telephoto", image: canonRF70200,
     ar: { why: "لالتقاط اللحظات العفوية من بعيد دون أن يشعر أحد.", use: "لحظات عفوية أثناء الكتب والزفة." },
     en: { why: "Catches candid emotion from a respectful distance.", use: "Candid tears, first look, ceremony reactions." },
     samples: [weddingA, weddingB],
   },
   {
-    key: "1424z", category: "lens", name: "Nikon Z 14-24mm f/2.8 S", spec: "Wide Zoom",
+    key: "1424z", category: "lens", name: "Nikon Z 14-24mm f/2.8 S", spec: "Wide Zoom", image: nikonZ1424,
     ar: { why: "لالتقاط اتساع القاعة وجلسات النيل والأماكن الواسعة.", use: "جلسات النيل والقاعات الكبيرة." },
     en: { why: "Wide storytelling for grand halls and Nile sessions.", use: "Nile sessions, big venues, environmental shots." },
     samples: [family, extra2, extra1],
   },
   {
-    key: "godox", category: "light", name: "Godox AD200 Pro", spec: "Portable Strobe",
+    key: "godox", category: "light", name: "Godox AD200 Pro", spec: "Portable Strobe", image: godoxAd200,
     ar: { why: "إضاءة استوديو محمولة لأي جلسة خارجية.", use: "جلسات الغروب والإضاءة الاحترافية بالليل." },
     en: { why: "Portable studio power for outdoor magic.", use: "Sunset flash, dramatic night portraits." },
     samples: [engagement, weddingB],
   },
   {
-    key: "profoto", category: "light", name: "Profoto B10X", spec: "Cinematic Strobe",
+    key: "profoto", category: "light", name: "Profoto B10X", spec: "Cinematic Strobe", image: profotoB10x,
     ar: { why: "أنعم إضاءة استوديو للحصول على بشرة سينمائية.", use: "البورتريه الرسمي للعروسين." },
     en: { why: "Softest cinema-grade strobe for skin tones.", use: "Formal couple portraits." },
     samples: [weddingA, engagement],
   },
   {
-    key: "aputure", category: "light", name: "Aputure 300X", spec: "Continuous LED",
+    key: "aputure", category: "light", name: "Aputure 300X", spec: "Continuous LED", image: aputure300x,
     ar: { why: "إضاءة مستمرة لفيديو الزفاف بجودة سينمائية.", use: "الفيلم السينمائي وجلسات الفيديو." },
     en: { why: "Continuous cinema light for wedding films.", use: "Video interviews, cinematic detail shots." },
     samples: [family, extra1],
   },
   {
-    key: "rs4", category: "stab", name: "DJI RS 4 Pro", spec: "3-Axis Gimbal",
+    key: "rs4", category: "stab", name: "DJI RS 4 Pro", spec: "3-Axis Gimbal", image: djiRs4,
     ar: { why: "لحركات كاميرا سينمائية ناعمة داخل الفيلم.", use: "دخول العريس والزفة والرقصة الأولى." },
     en: { why: "Silky cinema moves for the wedding film.", use: "Grand entrance, first dance walkthroughs." },
     samples: [weddingA, weddingB, extra2],
   },
   {
-    key: "ronin", category: "stab", name: "DJI Ronin 4D", spec: "Cinema Gimbal Camera",
+    key: "ronin", category: "stab", name: "DJI Ronin 4D", spec: "Cinema Gimbal Camera", image: djiRonin4d,
     ar: { why: "استقرار احترافي بجودة أفلام السينما.", use: "التصوير المتحرك في الأماكن الضيقة." },
     en: { why: "Broadcast-grade stabilization inside tight venues.", use: "Fluid tracking through corridors, dance floor." },
     samples: [extra1, family],
@@ -154,12 +169,22 @@ export function CameraBag() {
             transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -6 }}
             onClick={() => setActive(it)}
-            className="group relative overflow-hidden rounded-lg border border-border bg-surface/70 p-6 text-start transition-colors hover:border-gold/60"
+            className="group relative overflow-hidden rounded-lg border border-border bg-surface/70 p-5 text-start transition-colors hover:border-gold/60"
           >
-            <div className="pointer-events-none absolute -inset-20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
-                 style={{ background: "radial-gradient(circle, rgba(212,175,55,0.35), transparent 60%)" }} />
-            <div className="relative mx-auto mb-5 aspect-square w-28">
-              {it.category === "lens" ? <MiniLens /> : it.category === "camera" ? <MiniCamera /> : it.category === "light" ? <MiniLight /> : <MiniGimbal />}
+            <div
+              className="pointer-events-none absolute -inset-20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+              style={{ background: "radial-gradient(circle, rgba(212,175,55,0.35), transparent 60%)" }}
+            />
+            <div className="relative mx-auto mb-4 aspect-square w-full overflow-hidden rounded-md bg-black">
+              <motion.img
+                src={it.image}
+                alt={it.name}
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             </div>
             <div className="relative text-center">
               <p className="font-display text-lg">{it.name}</p>
@@ -185,7 +210,7 @@ export function CameraBag() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-xl border border-gold/30 bg-surface p-8 md:p-10"
+              className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-xl border border-gold/30 bg-surface p-6 md:p-10"
             >
               <button
                 onClick={() => setActive(null)}
@@ -195,9 +220,10 @@ export function CameraBag() {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="grid gap-8 md:grid-cols-[220px_1fr]">
-                <div className="mx-auto aspect-square w-48">
-                  {active.category === "lens" ? <MiniLens big /> : active.category === "camera" ? <MiniCamera big /> : active.category === "light" ? <MiniLight big /> : <MiniGimbal big />}
+              <div className="grid gap-8 md:grid-cols-[280px_1fr]">
+                <div className="relative mx-auto aspect-square w-full max-w-[280px] overflow-hidden rounded-lg bg-black">
+                  <img src={active.image} alt={active.name} className="h-full w-full object-cover" />
+                  <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-gold/20" />
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold">{active.spec}</p>
@@ -238,67 +264,5 @@ export function CameraBag() {
         )}
       </AnimatePresence>
     </Section>
-  );
-}
-
-function MiniLens({ big }: { big?: boolean }) {
-  return (
-    <div className="relative h-full w-full">
-      <div className="absolute inset-0 rounded-full"
-           style={{ background: "radial-gradient(circle at 30% 25%, #333 0%, #0a0a0a 70%)",
-                    boxShadow: "inset 0 0 20px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.6)" }} />
-      <div className="absolute inset-[15%] rounded-full"
-           style={{ background: "conic-gradient(from 45deg, oklch(0.55 0.11 75), oklch(0.85 0.14 85), oklch(0.55 0.11 75))",
-                    maskImage: "radial-gradient(circle, transparent 72%, black 74%)",
-                    WebkitMaskImage: "radial-gradient(circle, transparent 72%, black 74%)" }} />
-      <div className="absolute inset-[24%] rounded-full"
-           style={{ background: "radial-gradient(circle at 35% 30%, rgba(120,180,220,0.55) 0%, #020202 70%)" }} />
-      <div className="absolute inset-[30%] rounded-full bg-white/25 blur-sm mix-blend-screen" />
-      {big && <div className="absolute inset-0 rounded-full bg-gold/10 blur-2xl" />}
-    </div>
-  );
-}
-
-function MiniCamera({ big }: { big?: boolean }) {
-  return (
-    <div className="relative h-full w-full">
-      <div className="absolute inset-x-2 inset-y-6 rounded-md border border-white/10"
-           style={{ background: "linear-gradient(160deg, #2a2a2a, #050505)",
-                    boxShadow: "inset 0 0 12px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.6)" }} />
-      <div className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full"
-           style={{ background: "radial-gradient(circle at 35% 30%, #4a4a4a 0%, #030303 70%)",
-                    boxShadow: "inset 0 0 8px rgba(0,0,0,0.9), 0 0 0 2px rgba(212,175,55,0.5)" }} />
-      <div className="absolute right-3 top-2 h-1.5 w-4 rounded-full bg-red-500/70" />
-      {big && <div className="absolute inset-0 bg-gold/10 blur-2xl" />}
-    </div>
-  );
-}
-
-function MiniLight({ big }: { big?: boolean }) {
-  return (
-    <div className="relative h-full w-full">
-      <div className="absolute left-1/2 top-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-           style={{ background: "radial-gradient(circle, oklch(0.95 0.12 85) 0%, oklch(0.65 0.14 70) 40%, transparent 75%)",
-                    filter: "blur(2px)" }} />
-      <div className="absolute inset-[20%] rounded-full border border-gold/50"
-           style={{ background: "radial-gradient(circle at 40% 40%, oklch(0.95 0.05 85) 0%, oklch(0.4 0.05 70) 80%)" }} />
-      {big && <div className="absolute inset-0 bg-gold/30 blur-3xl" />}
-    </div>
-  );
-}
-
-function MiniGimbal({ big }: { big?: boolean }) {
-  return (
-    <div className="relative h-full w-full">
-      <div className="absolute left-1/2 top-[15%] h-2 w-16 -translate-x-1/2 rounded-full bg-white/20" />
-      <div className="absolute left-1/2 top-[20%] h-[60%] w-1 -translate-x-1/2 bg-gradient-to-b from-white/30 to-white/5" />
-      <div className="absolute inset-x-4 inset-y-[45%] rounded-md"
-           style={{ background: "linear-gradient(160deg, #2a2a2a, #050505)",
-                    boxShadow: "inset 0 0 8px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,175,55,0.3)" }} />
-      <div className="absolute left-1/2 top-[62%] h-6 w-6 -translate-x-1/2 rounded-full"
-           style={{ background: "radial-gradient(circle at 35% 30%, #333 0%, #050505 70%)",
-                    boxShadow: "0 0 0 1px rgba(212,175,55,0.4)" }} />
-      {big && <div className="absolute inset-0 bg-gold/10 blur-2xl" />}
-    </div>
   );
 }

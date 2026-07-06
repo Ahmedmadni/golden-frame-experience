@@ -7,6 +7,7 @@ import weddingA from "@/assets/gallery-wedding-1.jpg";
 import weddingB from "@/assets/gallery-wedding-2.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 import engagement from "@/assets/gallery-engagement.jpg";
+import heroLensImg from "@/assets/gear/hero-lens.jpg";
 
 /**
  * Cinematic wedding hero.
@@ -209,90 +210,67 @@ function Lens({
   const blades = [0, 40, 80, 120, 160, 200, 240, 280, 320]; // 9-blade
 
   return (
-    <div className="relative h-[min(78vh,720px)] w-[min(78vh,720px)]">
-      {/* Slow autorotate barrel */}
+    <div className="relative h-[min(82vh,760px)] w-[min(82vh,760px)]">
+      {/* Realistic lens photograph — slow autorotate for cinematic feel */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 rounded-full overflow-hidden"
+        style={{
+          boxShadow:
+            "inset 0 0 60px rgba(0,0,0,0.9), 0 40px 120px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.04)",
+        }}
         animate={reduce ? undefined : { rotate: 360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
-        {/* Zoom ring texture */}
+        <img
+          src={heroLensImg}
+          alt=""
+          className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 object-cover"
+          draggable={false}
+        />
+        {/* Vignette darken outside iris */}
         <div
-          className="absolute inset-[8%] rounded-full"
+          className="absolute inset-0"
           style={{
             background:
-              "repeating-conic-gradient(from 0deg, rgba(255,255,255,0.06) 0deg 2deg, rgba(255,255,255,0.14) 2deg 4deg)",
-            maskImage: "radial-gradient(circle, transparent 60%, black 62%, black 100%)",
-            WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 62%, black 100%)",
+              "radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.9) 100%)",
           }}
         />
       </motion.div>
 
-      {/* Barrel body */}
-      <div
-        className="absolute inset-[4%] rounded-full border border-white/10"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 25%, #2a2a2a 0%, #111 45%, #050505 80%)",
-          boxShadow:
-            "inset 0 0 60px rgba(0,0,0,0.9), inset 0 0 120px rgba(212,175,55,0.08), 0 40px 120px rgba(0,0,0,0.7)",
-        }}
-      />
-
-      {/* Gold trim ring */}
-      <div
-        className="absolute inset-[16%] rounded-full"
-        style={{
-          background:
-            "conic-gradient(from 45deg, oklch(0.55 0.11 75), oklch(0.85 0.14 85), oklch(0.55 0.11 75), oklch(0.9 0.14 85), oklch(0.55 0.11 75))",
-          maskImage: "radial-gradient(circle, transparent 76%, black 78%, black 100%)",
-          WebkitMaskImage: "radial-gradient(circle, transparent 76%, black 78%, black 100%)",
-          opacity: 0.9,
-        }}
-      />
-
-      {/* Focus ring text */}
-      <FocusMarks />
-
-      {/* Inner black bezel */}
-      <div
-        className="absolute inset-[22%] rounded-full border border-white/5"
-        style={{
-          background: "radial-gradient(circle at 40% 30%, #1a1a1a 0%, #030303 70%)",
-          boxShadow: "inset 0 0 40px rgba(0,0,0,0.9)",
-        }}
-      />
-
-      {/* Gallery revealed through the glass */}
+      {/* Gallery revealed through the iris */}
       <motion.div
         style={{ opacity: galleryOpacity, scale: galleryScale }}
-        className="absolute inset-[26%] overflow-hidden rounded-full"
+        className="absolute inset-[30%] overflow-hidden rounded-full"
       >
         <GalleryReel />
+        {/* Warm rim inside the glass */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-full"
+          style={{
+            boxShadow: "inset 0 0 60px rgba(212,175,55,0.35), inset 0 0 20px rgba(0,0,0,0.6)",
+          }}
+        />
       </motion.div>
 
-      {/* Aperture blades (over gallery) */}
+      {/* Aperture iris blades — closed by default, open on scroll */}
       <motion.div
         style={{ opacity: glassOpacity }}
-        className="absolute inset-[26%] overflow-hidden rounded-full"
+        className="absolute inset-[30%] overflow-hidden rounded-full"
       >
-        {/* Glass tint */}
+        {/* Warm glass reflection */}
         <div
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 35% 30%, rgba(180,220,255,0.35) 0%, rgba(20,40,60,0.6) 40%, rgba(0,0,0,0.9) 80%)",
+              "radial-gradient(circle at 32% 28%, rgba(255,210,140,0.55) 0%, rgba(120,70,20,0.5) 45%, rgba(0,0,0,0.9) 85%)",
           }}
         />
         {/* Blades */}
-        <motion.div
-          className="absolute inset-0"
-          style={{ scale: bladeGroupScale }}
-        >
+        <motion.div className="absolute inset-0" style={{ scale: bladeGroupScale }}>
           {blades.map((angle) => (
-            <motion.div
+            <div
               key={angle}
-              className="absolute left-1/2 top-1/2 h-[70%] w-[70%] origin-center"
+              className="absolute left-1/2 top-1/2 h-[72%] w-[72%] origin-center"
               style={{ transform: `translate(-50%,-50%) rotate(${angle}deg)` }}
             >
               <motion.div
@@ -300,39 +278,36 @@ function Lens({
                 className="h-full w-full origin-center"
               >
                 <div
-                  className="absolute left-1/2 top-0 h-1/2 w-[70%] -translate-x-1/2 origin-bottom"
+                  className="absolute left-1/2 top-0 h-1/2 w-[72%] -translate-x-1/2 origin-bottom"
                   style={{
                     clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
                     background:
-                      "linear-gradient(180deg, #232323 0%, #0d0d0d 60%, #050505 100%)",
+                      "linear-gradient(180deg, #2a2a2a 0%, #0d0d0d 60%, #050505 100%)",
                     boxShadow: "inset 0 0 8px rgba(0,0,0,0.9)",
                   }}
                 />
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </motion.div>
 
       {/* Center specular highlight */}
       <div
-        className="pointer-events-none absolute inset-[26%] rounded-full"
+        className="pointer-events-none absolute inset-[30%] rounded-full"
         style={{
-          background:
-            "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35) 0%, transparent 30%)",
+          background: "radial-gradient(circle at 32% 26%, rgba(255,255,255,0.4) 0%, transparent 32%)",
           mixBlendMode: "screen",
         }}
       />
 
-      {/* Lens flare streak */}
+      {/* Realistic lens flare */}
       <motion.div
         className="pointer-events-none absolute inset-0"
-        animate={reduce ? undefined : { opacity: [0.3, 0.7, 0.3] }}
+        animate={reduce ? undefined : { opacity: [0.35, 0.75, 0.35] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div
-          className="absolute left-[15%] top-[20%] h-[3px] w-[70%] rotate-[25deg] rounded-full bg-gradient-to-r from-transparent via-gold/60 to-transparent blur-[2px]"
-        />
+        <div className="absolute left-[12%] top-[18%] h-[3px] w-[75%] rotate-[22deg] rounded-full bg-gradient-to-r from-transparent via-gold/70 to-transparent blur-[2px]" />
         <div className="absolute left-[35%] top-[30%] h-6 w-6 rounded-full bg-gold/50 blur-xl" />
         <div className="absolute left-[55%] top-[55%] h-3 w-3 rounded-full bg-gold/70 blur-md" />
       </motion.div>
@@ -343,30 +318,6 @@ function Lens({
   );
 }
 
-function FocusMarks() {
-  const marks = ["∞", "50", "30", "20", "15", "10", "7", "5", "3", "2", "1.5", "1", "0.5"];
-  return (
-    <div className="pointer-events-none absolute inset-[16%]">
-      {marks.map((m, i) => {
-        const angle = -110 + (i / (marks.length - 1)) * 220;
-        return (
-          <div
-            key={m}
-            className="absolute left-1/2 top-1/2 h-full w-full"
-            style={{ transform: `rotate(${angle}deg)` }}
-          >
-            <span
-              className="absolute left-1/2 top-0 -translate-x-1/2 font-mono text-[9px] tracking-widest text-white/40"
-              style={{ transform: `translateX(-50%) rotate(${-angle}deg)` }}
-            >
-              {m}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 function GalleryReel() {
   const shots = [weddingA, extra1, weddingB, engagement];

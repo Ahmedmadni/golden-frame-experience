@@ -8,6 +8,7 @@ import weddingB from "@/assets/gallery-wedding-2.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 import engagement from "@/assets/gallery-engagement.jpg";
 import lensVideo from "@/assets/gear/lens-hero.mp4.asset.json";
+import heroLensImg from "@/assets/gear/canon-rf-85.jpg";
 
 /**
  * Cinematic wedding hero.
@@ -135,6 +136,7 @@ export function HeroLens() {
               <video
                 ref={videoRef}
                 src={lensVideo.url}
+                poster={heroLensImg}
                 muted
                 playsInline
                 preload="auto"

@@ -318,30 +318,6 @@ function Lens({
   );
 }
 
-function FocusMarks() {
-  const marks = ["∞", "50", "30", "20", "15", "10", "7", "5", "3", "2", "1.5", "1", "0.5"];
-  return (
-    <div className="pointer-events-none absolute inset-[16%]">
-      {marks.map((m, i) => {
-        const angle = -110 + (i / (marks.length - 1)) * 220;
-        return (
-          <div
-            key={m}
-            className="absolute left-1/2 top-1/2 h-full w-full"
-            style={{ transform: `rotate(${angle}deg)` }}
-          >
-            <span
-              className="absolute left-1/2 top-0 -translate-x-1/2 font-mono text-[9px] tracking-widest text-white/40"
-              style={{ transform: `translateX(-50%) rotate(${-angle}deg)` }}
-            >
-              {m}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 function GalleryReel() {
   const shots = [weddingA, extra1, weddingB, engagement];

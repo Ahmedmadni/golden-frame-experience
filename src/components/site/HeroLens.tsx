@@ -221,12 +221,15 @@ function Lens({
         animate={reduce ? undefined : { rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
-        <img
-          src={heroLensImg}
-          alt=""
+        <video
+          src={lensVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 object-cover"
-          draggable={false}
         />
+
         {/* Vignette darken outside iris */}
         <div
           className="absolute inset-0"

@@ -126,7 +126,7 @@ export const TESTIMONIALS = [
 ];
 
 export const AWARDS = [
-  "Sony Alpha", "WPJA", "Fearless Photographers", "Junebug Weddings", "Rangefinder", "Vogue Arabia",
+  "Canon Ambassadors", "WPJA", "Fearless Photographers", "Junebug Weddings", "Rangefinder", "Vogue Arabia",
 ];
 
 export const CONTACT = {

@@ -49,7 +49,7 @@ export function Featured() {
             {[
               { label: t("featured.meta.location"), value: "Maghagha, El-Minya" },
               { label: t("featured.meta.shots"), value: "812" },
-              { label: t("featured.meta.gear"), value: "Sony A1 · FX3 · 85mm GM" },
+              { label: t("featured.meta.gear"), value: "Canon R5 · Nikon Z9 · RF 85mm f/1.2 L" },
             ].map((row) => (
               <div key={row.label} className="flex items-baseline justify-between gap-6">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">{row.label}</dt>

@@ -7,7 +7,7 @@ import weddingA from "@/assets/gallery-wedding-1.jpg";
 import weddingB from "@/assets/gallery-wedding-2.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 import engagement from "@/assets/gallery-engagement.jpg";
-import heroLensImg from "@/assets/gear/hero-lens.jpg";
+import lensVideo from "@/assets/gear/lens-hero.mp4.asset.json";
 
 /**
  * Cinematic wedding hero.
@@ -221,12 +221,15 @@ function Lens({
         animate={reduce ? undefined : { rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
-        <img
-          src={heroLensImg}
-          alt=""
+        <video
+          src={lensVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 object-cover"
-          draggable={false}
         />
+
         {/* Vignette darken outside iris */}
         <div
           className="absolute inset-0"

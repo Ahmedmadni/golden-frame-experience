@@ -117,7 +117,7 @@ const en: Dict = {
   "marquee.title": "Moments that never stop moving.",
 
   "gear.eyebrow": "The gear",
-  "gear.title": "Shot on Canon EOS R Shot on Sony Alpha cinema kit. Nikon Z cinema kit.",
+  "gear.title": "Shot on Canon EOS R & Nikon Z cinema kit.",
   "gear.sub": "Professional Canon RF L and Nikon Z S-line lenses — the same tools trusted by Vogue and world-class wedding photographers.",
   "gear.cameras": "Cameras",
   "gear.lenses": "Lenses",

@@ -46,7 +46,6 @@ export function HeroLens() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
     const start = () => {
       if (rafRef.current == null) rafRef.current = requestAnimationFrame(step);

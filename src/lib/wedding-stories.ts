@@ -45,7 +45,7 @@ const chapterLabels = {
 function buildChapters(
   photos: Record<Chapter["key"], string[]>,
   captionsAr: Record<Chapter["key"], string>,
-  captionsEn: Record<Chapter["key"], string>
+  captionsEn: Record<Chapter["key"], string>,
 ): Chapter[] {
   return (Object.keys(chapterLabels) as Chapter["key"][]).map((k) => ({
     key: k,
@@ -86,7 +86,7 @@ export const WEDDING_STORIES: WeddingStory[] = [
         outdoor: "Golden hour by the Nile corniche.",
         hall: "The zaffa, the dance, the family laughter.",
         final: "A farewell under candlelight.",
-      }
+      },
     ),
   },
   {
@@ -119,7 +119,7 @@ export const WEDDING_STORIES: WeddingStory[] = [
         outdoor: "Between the palm trees and afternoon light.",
         hall: "A hall lit in gold and candlelight.",
         final: "One last dance before goodbye.",
-      }
+      },
     ),
   },
   {
@@ -152,7 +152,7 @@ export const WEDDING_STORIES: WeddingStory[] = [
         outdoor: "A romantic session in the wheat fields.",
         hall: "An authentic Upper Egyptian zaffa.",
         final: "A farewell to an Umm Kulthum song.",
-      }
+      },
     ),
   },
   {
@@ -185,7 +185,7 @@ export const WEDDING_STORIES: WeddingStory[] = [
         outdoor: "Sunset by the Nile bank.",
         hall: "A hall full of loved ones and light.",
         final: "Fireworks and farewells.",
-      }
+      },
     ),
   },
 ];
@@ -196,35 +196,47 @@ export const ALBUM_TYPES = [
     ar: { name: "ألبوم إيطالي", desc: "طباعة فاخرة على ورق قطني، غلاف جلد إيطالي." },
     en: { name: "Italian Album", desc: "Fine cotton paper prints, Italian leather cover." },
     accent: "from-[#c9a24a] to-[#f2d98d]",
+    cover: weddingA,
+    pages: [weddingB, engagement] as [string, string],
   },
   {
     key: "crystal",
     ar: { name: "ألبوم كريستال", desc: "غلاف كريستالي شفاف مع طباعة معدنية لامعة." },
     en: { name: "Crystal Album", desc: "Clear crystal cover with metallic pearl prints." },
     accent: "from-[#a8c8ff] to-[#e6f0ff]",
+    cover: extra1,
+    pages: [weddingA, family] as [string, string],
   },
   {
     key: "leather",
     ar: { name: "ألبوم جلد", desc: "جلد طبيعي مدبوغ يدويًا، خياطة كلاسيكية." },
     en: { name: "Leather Album", desc: "Hand-tanned genuine leather with classic stitching." },
     accent: "from-[#7a4a2b] to-[#c98a5a]",
+    cover: weddingB,
+    pages: [engagement, extra1] as [string, string],
   },
   {
     key: "acrylic",
     ar: { name: "ألبوم أكريليك", desc: "غلاف أكريليك مضيء مع صورة بانورامية." },
     en: { name: "Acrylic Album", desc: "Luminous acrylic cover with a panoramic hero image." },
     accent: "from-[#5eead4] to-[#a7f3d0]",
+    cover: engagement,
+    pages: [weddingA, extra1] as [string, string],
   },
   {
     key: "wooden",
     ar: { name: "ألبوم خشب", desc: "غلاف خشب زان محفور بالليزر باسم العروسين." },
     en: { name: "Wooden Album", desc: "Beech wood cover laser-engraved with the couple's name." },
     accent: "from-[#8b5a2b] to-[#d2a679]",
+    cover: family,
+    pages: [weddingB, weddingA] as [string, string],
   },
   {
     key: "premium-box",
     ar: { name: "بريميوم بوكس", desc: "صندوق فاخر يضم الألبوم، ألبوم آباء، وUSB خشبي." },
     en: { name: "Premium Box", desc: "Luxury box with main album, parents album, and wooden USB." },
     accent: "from-[#d4af37] to-[#fff2a8]",
+    cover: weddingA,
+    pages: [weddingB, family] as [string, string],
   },
 ];

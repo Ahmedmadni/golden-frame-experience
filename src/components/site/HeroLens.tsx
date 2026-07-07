@@ -19,27 +19,12 @@ export function HeroLens() {
     if (!v) return;
     v.pause();
 
-    const updateTarget = () => {
-      // 50% from scroll position, 50% from mouse Y (if mouse ever moved)
-      const scrollTarget = scrollRef.current;
-      const mouseTarget = mouseActiveRef.current ? mouseRef.current : scrollTarget;
-      targetTimeRef.current = Math.max(0, Math.min(1, (scrollTarget + mouseTarget) / 2));
-    };
-
     const scrollRef = { current: 0 };
-    const mouseRef = { current: 0 };
-    const mouseActiveRef = { current: false };
 
     const onScroll = () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       scrollRef.current = docHeight > 0 ? window.scrollY / docHeight : 0;
-      updateTarget();
-    };
-
-    const onMouseMove = (e: MouseEvent) => {
-      mouseActiveRef.current = true;
-      mouseRef.current = e.clientY / window.innerHeight;
-      updateTarget();
+      targetTimeRef.current = Math.max(0, Math.min(1, scrollRef.current));
     };
 
     const step = () => {

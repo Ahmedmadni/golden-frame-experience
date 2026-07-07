@@ -1,19 +1,30 @@
 import { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import heroLensImg from "@/assets/gear/hero-lens.jpg";
+import weddingA from "@/assets/gallery-wedding-1.jpg";
+import weddingB from "@/assets/gallery-wedding-2.jpg";
+import engagement from "@/assets/gallery-engagement.jpg";
+import family from "@/assets/gallery-family.jpg";
+import extra1 from "@/assets/gallery-extra-1.jpg";
 
 const STOPS = [
   { f: "f/1.4", blur: 32, bokeh: 1.0 },
-  { f: "f/2",   blur: 24, bokeh: 0.85 },
+  { f: "f/2", blur: 24, bokeh: 0.85 },
   { f: "f/2.8", blur: 18, bokeh: 0.7 },
-  { f: "f/4",   blur: 12, bokeh: 0.55 },
-  { f: "f/5.6", blur: 6,  bokeh: 0.4 },
-  { f: "f/8",   blur: 2,  bokeh: 0.25 },
+  { f: "f/4", blur: 12, bokeh: 0.55 },
+  { f: "f/5.6", blur: 6, bokeh: 0.4 },
+  { f: "f/8", blur: 2, bokeh: 0.25 },
 ];
 
+const BOKEH_PHOTOS = [weddingA, weddingB, engagement, family, extra1];
+
 /**
- * Scroll-driven aperture ladder. Blades close from f/1.4 → f/8 while
- * background bokeh sharpens. Deep-field wedding hall reveals at the end.
+ * Scroll-driven aperture ladder shot on a real macro photo of a Canon
+ * RF 85mm f/1.2 iris (not an illustration). A diaphragm-style vignette
+ * closes the visible opening from f/1.4 → f/8 while real, heavily
+ * defocused photographs stand in for the background bokeh, and a real
+ * frame sharpens into view as the deep-field reveal.
  */
 export function ApertureScroll() {
   const { lang } = useI18n();
@@ -21,72 +32,122 @@ export function ApertureScroll() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const p = useSpring(scrollYProgress, { stiffness: 90, damping: 25, mass: 0.5 });
 
-  const bladeAngle = useTransform(p, [0, 1], [-60, 5]); // -60 open, ~0 closed
-  const irisScale = useTransform(p, [0, 1], [0.9, 0.15]);
+  const irisRadius = useTransform(p, [0, 1], [92, 16]); // % — visible opening shrinks
+  const lensRotate = useTransform(p, [0, 1], [-6, 6]);
+  const lensScale = useTransform(p, [0, 1], [1.06, 0.97]);
   const fStopIndex = useTransform(p, [0, 1], [0, STOPS.length - 1]);
-  const blur = useTransform(p, [0, 1], [32, 2]);
-  const bokehOpacity = useTransform(p, [0, 1], [1, 0.15]);
-  const bokehScale = useTransform(p, [0, 1], [1.4, 0.6]);
+  const bokehOpacity = useTransform(p, [0, 1], [1, 0.12]);
+  const bokehScale = useTransform(p, [0, 1], [1.3, 0.7]);
   const sceneOpacity = useTransform(p, [0.6, 0.95], [0, 1]);
+  const sceneBlur = useTransform(p, [0.6, 1], [24, 0]);
+  const sceneBlurCss = useTransform(sceneBlur, (v) => `blur(${v}px)`);
+  const sweepX = useTransform(p, [0, 1], ["-40%", "140%"]);
+  const irisMask = useTransform(
+    irisRadius,
+    (r) => `radial-gradient(circle, transparent ${r}%, black ${r + 2}%)`,
+  );
 
   const bokehs = useMemo(
-    () => Array.from({ length: 18 }).map((_, i) => ({
-      x: (i * 53) % 100, y: (i * 71) % 100,
-      s: 40 + ((i * 17) % 90),
-      d: 8 + ((i * 3) % 10),
-      o: 0.25 + ((i * 7) % 40) / 100,
-    })),
-    []
+    () =>
+      Array.from({ length: 14 }).map((_, i) => ({
+        x: (i * 53) % 100,
+        y: (i * 71) % 100,
+        s: 70 + ((i * 17) % 120),
+        blur: 14 + ((i * 3) % 14),
+        o: 0.3 + ((i * 7) % 40) / 100,
+        src: BOKEH_PHOTOS[i % BOKEH_PHOTOS.length],
+      })),
+    [],
   );
 
   return (
-    <section ref={ref} className="relative min-h-[280vh] w-full bg-background" aria-label="Aperture scroll">
+    <section
+      ref={ref}
+      className="relative min-h-[280vh] w-full bg-background"
+      aria-label="Aperture scroll"
+    >
       <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden">
-        {/* Bokeh field (background) */}
-        <motion.div style={{ opacity: bokehOpacity, scale: bokehScale }} className="pointer-events-none absolute inset-0">
+        {/* Bokeh field — real, heavily defocused photographs instead of flat dots */}
+        <motion.div
+          style={{ opacity: bokehOpacity, scale: bokehScale }}
+          className="pointer-events-none absolute inset-0"
+        >
           {bokehs.map((b, i) => (
-            <motion.span
+            <motion.div
               key={i}
               aria-hidden
-              className="absolute rounded-full"
+              className="absolute overflow-hidden rounded-full"
               style={{
-                left: `${b.x}%`, top: `${b.y}%`,
-                width: b.s, height: b.s,
-                background: "radial-gradient(circle, oklch(0.9 0.14 85 / 0.65) 0%, transparent 65%)",
-                filter: `blur(${b.d}px)`,
+                left: `${b.x}%`,
+                top: `${b.y}%`,
+                width: b.s,
+                height: b.s,
+                filter: `blur(${b.blur}px) saturate(1.25)`,
                 opacity: b.o,
               }}
-              animate={{ y: [0, -30, 0], opacity: [b.o, b.o * 1.6, b.o] }}
-              transition={{ duration: 8 + (i % 5), repeat: Infinity, ease: "easeInOut" }}
-            />
+              animate={{ y: [0, -26, 0] }}
+              transition={{ duration: 9 + (i % 5), repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src={b.src} alt="" className="h-full w-full scale-150 object-cover" />
+            </motion.div>
           ))}
         </motion.div>
 
-        {/* Deep-field scene revealed at f/8 */}
-        <motion.div style={{ opacity: sceneOpacity, filter: useTransform(blur, (v) => `blur(${Math.max(0, v - 2)}px)`) }}
-                    className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0"
-               style={{ background: "radial-gradient(ellipse at center, oklch(0.35 0.08 60 / 0.7) 0%, transparent 60%)" }} />
+        {/* Deep-field scene — a real frame sharpening into view at f/8 */}
+        <motion.div
+          style={{ opacity: sceneOpacity, filter: sceneBlurCss }}
+          className="pointer-events-none absolute inset-0"
+        >
+          <img src={weddingA} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/80" />
         </motion.div>
 
         <div className="relative flex flex-col items-center gap-10">
-          {/* Aperture module */}
+          {/* Real lens module */}
           <div className="relative h-[min(60vh,520px)] w-[min(60vh,520px)]">
-            <div className="absolute inset-0 rounded-full border border-white/10"
-                 style={{ background: "radial-gradient(circle at 30% 25%, #2a2a2a 0%, #0b0b0b 60%, #030303 100%)",
-                          boxShadow: "inset 0 0 60px rgba(0,0,0,0.9), 0 30px 100px rgba(0,0,0,0.7)" }} />
-            <div className="absolute inset-[10%] rounded-full"
-                 style={{ background: "conic-gradient(from 45deg, oklch(0.55 0.11 75), oklch(0.9 0.14 85), oklch(0.55 0.11 75))",
-                          maskImage: "radial-gradient(circle, transparent 78%, black 80%)",
-                          WebkitMaskImage: "radial-gradient(circle, transparent 78%, black 80%)" }} />
-            <div className="absolute inset-[14%] overflow-hidden rounded-full"
-                 style={{ background: "radial-gradient(circle at 35% 30%, rgba(180,220,255,0.35) 0%, rgba(20,40,60,0.6) 40%, rgba(0,0,0,0.9) 80%)" }}>
-              <Blades bladeAngle={bladeAngle} irisScale={irisScale} />
-            </div>
-            {/* Specular highlight */}
-            <div className="pointer-events-none absolute inset-[14%] rounded-full"
-                 style={{ background: "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35) 0%, transparent 30%)",
-                          mixBlendMode: "screen" }} />
+            {/* Bezel */}
+            <div
+              className="absolute inset-0 rounded-full border border-white/10"
+              style={{
+                background:
+                  "radial-gradient(circle at 30% 25%, #2a2a2a 0%, #0b0b0b 60%, #030303 100%)",
+                boxShadow: "inset 0 0 60px rgba(0,0,0,0.9), 0 30px 100px rgba(0,0,0,0.7)",
+              }}
+            />
+            {/* Real glass — an actual macro photograph of a Canon RF 85mm f/1.2 iris */}
+            <motion.div
+              style={{ rotate: lensRotate, scale: lensScale }}
+              className="absolute inset-[10%] overflow-hidden rounded-full"
+            >
+              <img
+                src={heroLensImg}
+                alt="Canon RF 85mm f/1.2 aperture blades"
+                className="h-full w-full object-cover"
+              />
+              {/* Diaphragm vignette — closes the visible opening as you scroll */}
+              <motion.div
+                className="pointer-events-none absolute inset-0"
+                style={{ background: irisMask }}
+              />
+              {/* Blade-seam segments for mechanical detail */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-40"
+                style={{
+                  background:
+                    "repeating-conic-gradient(from 0deg, transparent 0deg 38deg, rgba(0,0,0,0.35) 39deg 40deg)",
+                }}
+              />
+              {/* Light sweep across the coated glass */}
+              <motion.div
+                className="pointer-events-none absolute inset-y-0 w-1/3"
+                style={{
+                  left: sweepX,
+                  background:
+                    "linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent)",
+                  mixBlendMode: "screen",
+                }}
+              />
+            </motion.div>
             {/* Outer glow */}
             <div className="pointer-events-none absolute -inset-6 rounded-full bg-gold/15 blur-3xl" />
           </div>
@@ -98,7 +159,9 @@ export function ApertureScroll() {
             </p>
             <FStopReadout index={fStopIndex} />
             <p className="mt-2 text-xs text-gold/80">
-              {lang === "ar" ? "مرّر لأسفل — من عزل خيالي إلى وضوح كامل" : "Scroll — from dreamy bokeh to deep focus"}
+              {lang === "ar"
+                ? "مرّر لأسفل — من عزل خيالي إلى وضوح كامل"
+                : "Scroll — from dreamy bokeh to deep focus"}
             </p>
           </div>
         </div>
@@ -107,37 +170,22 @@ export function ApertureScroll() {
   );
 }
 
-function Blades({ bladeAngle, irisScale }: { bladeAngle: MotionValue<number>; irisScale: MotionValue<number> }) {
-  const blades = [0, 40, 80, 120, 160, 200, 240, 280, 320];
+function FStopReadout({ index }: { index: MotionValue<number> }) {
   return (
-    <div className="absolute inset-0">
-      {blades.map((a) => (
-        <div key={a} className="absolute left-1/2 top-1/2 h-[75%] w-[75%] origin-center"
-             style={{ transform: `translate(-50%,-50%) rotate(${a}deg)` }}>
-          <motion.div style={{ rotate: bladeAngle, scale: irisScale }} className="h-full w-full origin-center">
-            <div className="absolute left-1/2 top-0 h-1/2 w-[70%] -translate-x-1/2 origin-bottom"
-                 style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
-                          background: "linear-gradient(180deg, #262626 0%, #0d0d0d 60%, #050505 100%)",
-                          boxShadow: "inset 0 0 8px rgba(0,0,0,0.9)" }} />
-          </motion.div>
-        </div>
+    <div className="mt-2 flex items-center justify-center gap-3 font-mono text-2xl md:text-3xl">
+      {STOPS.map((s, i) => (
+        <FStopLabel key={s.f} index={index} i={i} label={s.f} />
       ))}
     </div>
   );
 }
 
-function FStopReadout({ index }: { index: MotionValue<number> }) {
+function FStopLabel({ index, i, label }: { index: MotionValue<number>; i: number; label: string }) {
+  const opacity = useTransform(index, (v) => (Math.abs(v - i) < 0.5 ? 1 : 0.25));
+  const scale = useTransform(index, (v) => (Math.abs(v - i) < 0.5 ? 1.15 : 0.9));
   return (
-    <div className="mt-2 flex items-center justify-center gap-3 font-mono text-2xl md:text-3xl">
-      {STOPS.map((s, i) => {
-        const opacity = useTransform(index, (v) => (Math.abs(v - i) < 0.5 ? 1 : 0.25));
-        const scale = useTransform(index, (v) => (Math.abs(v - i) < 0.5 ? 1.15 : 0.9));
-        return (
-          <motion.span key={s.f} style={{ opacity, scale }} className="text-gold">
-            {s.f}
-          </motion.span>
-        );
-      })}
-    </div>
+    <motion.span style={{ opacity, scale }} className="text-gold">
+      {label}
+    </motion.span>
   );
 }

@@ -26,7 +26,9 @@ export function Portfolio({ preview = true }: { preview?: boolean }) {
       .filter((r) => r.signedUrl)
       .map((r) => ({
         src: r.signedUrl as string,
-        category: (CATEGORIES.includes(r.category as Category) ? r.category : "cinematic") as Category,
+        category: (CATEGORIES.includes(r.category as Category)
+          ? r.category
+          : "cinematic") as Category,
         ratio: "portrait",
         alt: r.title,
       }));
@@ -47,41 +49,55 @@ export function Portfolio({ preview = true }: { preview?: boolean }) {
           <button
             key={c}
             onClick={() => setFilter(c)}
-            className={`whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase tracking-widest transition ${
+            className={`relative whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase tracking-widest transition-colors ${
               filter === c
-                ? "border-gold bg-gold text-background"
+                ? "border-gold text-background"
                 : "border-border text-muted-foreground hover:border-foreground hover:text-foreground"
             }`}
           >
+            {filter === c && (
+              <motion.span
+                layoutId="portfolio-filter-pill"
+                transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                className="absolute inset-0 -z-10 rounded-full bg-gold"
+              />
+            )}
             {c === "all" ? t("portfolio.all") : t(`cat.${c}`)}
           </button>
         ))}
       </div>
 
-      <div className="columns-2 gap-3 md:columns-3 md:gap-4 lg:columns-4 xl:columns-5 [column-fill:_balance]">
-        {items.map((g, i) => (
-          <motion.button
-            key={`${g.src}-${i}`}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: (i % 6) * 0.04 }}
-            onClick={() => setActive(g)}
-            className="group relative mb-3 block w-full overflow-hidden rounded-md md:mb-4"
-          >
-            <img
-              src={g.src}
-              alt={g.alt}
-              loading="lazy"
-              className="h-auto w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0 opacity-0 transition duration-500 group-hover:opacity-100" />
-            <span className="pointer-events-none absolute bottom-2 start-2 rounded-full bg-background/75 px-2.5 py-1 text-[9px] uppercase tracking-[0.25em] opacity-0 backdrop-blur transition duration-500 group-hover:opacity-100">
-              {t(`cat.${g.category}`)}
-            </span>
-          </motion.button>
-        ))}
-      </div>
+      <motion.div
+        layout
+        className="columns-2 gap-3 md:columns-3 md:gap-4 lg:columns-4 xl:columns-5 [column-fill:_balance]"
+      >
+        <AnimatePresence initial={false}>
+          {items.map((g, i) => (
+            <motion.button
+              layout
+              key={`${g.src}-${i}`}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.4, delay: (i % 6) * 0.03 }}
+              onClick={() => setActive(g)}
+              className="group relative mb-3 block w-full overflow-hidden rounded-md md:mb-4"
+            >
+              <img
+                src={g.src}
+                alt={g.alt}
+                loading="lazy"
+                className="h-auto w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/0 opacity-0 transition duration-500 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute bottom-2 start-2 rounded-full bg-background/75 px-2.5 py-1 text-[9px] uppercase tracking-[0.25em] opacity-0 backdrop-blur transition duration-500 group-hover:opacity-100">
+                {t(`cat.${g.category}`)}
+              </span>
+            </motion.button>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       {preview && (
         <div className="mt-16 text-center">

@@ -3,7 +3,7 @@ import lensVideo from "@/assets/gear/lens-hero.mp4.asset.json";
 import heroLensImg from "@/assets/gear/canon-rf-85.jpg";
 
 /**
- * Lens video scrubbed by scroll and mouse Y position.
+ * Lens video scrubbed by scroll position only.
  * The video is the only element — pure immersive experience.
  */
 export function HeroLens() {
@@ -13,7 +13,7 @@ export function HeroLens() {
   const targetTimeRef = useRef(0);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Scroll + mouse Y drive the video
+  // Scroll drives the video
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -58,7 +58,6 @@ export function HeroLens() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMouseMove);
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };

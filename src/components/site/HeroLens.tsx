@@ -3,7 +3,7 @@ import lensVideo from "@/assets/gear/lens-hero.mp4.asset.json";
 import heroLensImg from "@/assets/gear/canon-rf-85.jpg";
 
 /**
- * Lens video scrubbed by scroll and mouse Y position.
+ * Lens video scrubbed by scroll position only.
  * The video is the only element — pure immersive experience.
  */
 export function HeroLens() {
@@ -13,33 +13,18 @@ export function HeroLens() {
   const targetTimeRef = useRef(0);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Scroll + mouse Y drive the video
+  // Scroll drives the video
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
     v.pause();
 
-    const updateTarget = () => {
-      // 50% from scroll position, 50% from mouse Y (if mouse ever moved)
-      const scrollTarget = scrollRef.current;
-      const mouseTarget = mouseActiveRef.current ? mouseRef.current : scrollTarget;
-      targetTimeRef.current = Math.max(0, Math.min(1, (scrollTarget + mouseTarget) / 2));
-    };
-
     const scrollRef = { current: 0 };
-    const mouseRef = { current: 0 };
-    const mouseActiveRef = { current: false };
 
     const onScroll = () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       scrollRef.current = docHeight > 0 ? window.scrollY / docHeight : 0;
-      updateTarget();
-    };
-
-    const onMouseMove = (e: MouseEvent) => {
-      mouseActiveRef.current = true;
-      mouseRef.current = e.clientY / window.innerHeight;
-      updateTarget();
+      targetTimeRef.current = Math.max(0, Math.min(1, scrollRef.current));
     };
 
     const step = () => {
@@ -61,7 +46,6 @@ export function HeroLens() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
     const start = () => {
       if (rafRef.current == null) rafRef.current = requestAnimationFrame(step);
@@ -74,7 +58,6 @@ export function HeroLens() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMouseMove);
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };

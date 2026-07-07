@@ -82,48 +82,40 @@ export function HeroLens() {
 
   return (
     <section ref={ref} className="relative h-[200vh] w-full bg-background" aria-label="Hero">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
+        {/* Placeholder while loading */}
         <div
-          className="relative h-[min(88vh,860px)] w-[min(88vh,860px)] rounded-full overflow-hidden"
-          style={{
-            boxShadow:
-              "0 40px 120px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06)",
-          }}
+          className="absolute inset-0 transition-opacity duration-700 pointer-events-none"
+          style={{ opacity: videoReady ? 0 : 1 }}
         >
-          {/* Placeholder while loading */}
-          <div
-            className="absolute inset-0 transition-opacity duration-700 pointer-events-none"
-            style={{ opacity: videoReady ? 0 : 1 }}
-          >
-            <img
-              src={heroLensImg}
-              alt=""
-              className="h-full w-full object-cover blur-sm scale-105"
-            />
-          </div>
-
-          <video
-            ref={videoRef}
-            src={lensVideo.url}
-            poster={heroLensImg}
-            muted
-            playsInline
-            preload="auto"
-            autoPlay={false}
-            onLoadedData={() => setVideoReady(true)}
-            className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-700"
-            style={{ opacity: videoReady ? 1 : 0 }}
-          />
-
-          {/* Subtle vignette overlay */}
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at center, transparent 65%, rgba(0,0,0,0.35) 100%)",
-            }}
+          <img
+            src={heroLensImg}
+            alt=""
+            className="h-full w-full object-cover blur-sm scale-105"
           />
         </div>
+
+        <video
+          ref={videoRef}
+          src={lensVideo.url}
+          poster={heroLensImg}
+          muted
+          playsInline
+          preload="auto"
+          autoPlay={false}
+          onLoadedData={() => setVideoReady(true)}
+          className="h-full w-full object-cover transition-opacity duration-700"
+          style={{ opacity: videoReady ? 1 : 0 }}
+        />
+
+        {/* Subtle vignette overlay */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at center, transparent 65%, rgba(0,0,0,0.35) 100%)",
+          }}
+        />
       </div>
     </section>
   );

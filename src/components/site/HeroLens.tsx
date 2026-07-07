@@ -51,7 +51,11 @@ export function HeroLens() {
       // Lerp toward target for buttery scrub
       const next = current + (target - current) * 0.15;
       if (Math.abs(next - current) > 0.005) {
-        try { v.currentTime = next; } catch {}
+        try {
+          v.currentTime = next;
+        } catch {
+          // ignore scrub seek errors
+        }
       }
       rafRef.current = requestAnimationFrame(step);
     };
@@ -83,7 +87,7 @@ export function HeroLens() {
         d: 6 + ((i * 7) % 10),
         o: 0.15 + ((i * 5) % 40) / 100,
       })),
-    []
+    [],
   );
 
   return (
@@ -177,8 +181,7 @@ export function HeroLens() {
               <div
                 className="pointer-events-none absolute inset-0 rounded-full"
                 style={{
-                  boxShadow:
-                    "inset 0 0 60px rgba(212,175,55,0.35), inset 0 0 20px rgba(0,0,0,0.6)",
+                  boxShadow: "inset 0 0 60px rgba(212,175,55,0.35), inset 0 0 20px rgba(0,0,0,0.6)",
                 }}
               />
             </motion.div>

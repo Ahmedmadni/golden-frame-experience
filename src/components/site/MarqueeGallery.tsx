@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { GALLERY } from "@/lib/site-data";
 
@@ -11,13 +12,25 @@ export function MarqueeGallery() {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <div className="mx-auto mb-12 max-w-7xl px-6 md:px-10">
-        <p className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-muted-foreground">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-muted-foreground"
+        >
           <span className="h-px w-10 bg-gold" />
           {t("marquee.eyebrow")}
-        </p>
-        <h2 className="max-w-3xl font-display text-4xl font-medium leading-[1.05] md:text-6xl">
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl font-display text-4xl font-medium leading-[1.05] md:text-6xl"
+        >
           {t("marquee.title")}
-        </h2>
+        </motion.h2>
       </div>
 
       <MarqueeRow items={[...rowA, ...rowA]} direction="left" duration={70} />

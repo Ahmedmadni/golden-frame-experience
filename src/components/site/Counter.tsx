@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
-export function Counter({ to, suffix = "", duration = 1800 }: { to: number; suffix?: string; duration?: number }) {
+export function Counter({
+  to,
+  suffix = "",
+  duration = 1800,
+}: {
+  to: number;
+  suffix?: string;
+  duration?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [n, setN] = useState(0);
@@ -21,9 +29,15 @@ export function Counter({ to, suffix = "", duration = 1800 }: { to: number; suff
   }, [inView, to, duration]);
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={inView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="tabular-nums inline-block"
+    >
       {n.toLocaleString()}
       {suffix}
-    </span>
+    </motion.span>
   );
 }

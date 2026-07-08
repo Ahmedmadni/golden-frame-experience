@@ -1,18 +1,10 @@
-import { useEffect, useMemo, useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValue,
-  animate,
-  type MotionValue,
-} from "framer-motion";
+import { useMemo, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import heroLensImg from "@/assets/gear/hero-lens.jpg";
+import romanticVideo from "@/assets/gear/romantic-scene.mp4";
 import weddingA from "@/assets/gallery-wedding-1.jpg";
 import weddingB from "@/assets/gallery-wedding-2.jpg";
-import engagement from "@/assets/gallery-engagement.jpg";
 import family from "@/assets/gallery-family.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 
@@ -22,14 +14,14 @@ import extra1 from "@/assets/gallery-extra-1.jpg";
 const FSTOPS = ["f/8", "f/5.6", "f/4", "f/2.8", "f/2", "f/1.4"];
 
 const BOKEH_PHOTOS = [weddingA, weddingB, family, extra1];
-const SCENE_PHOTOS = [weddingA, engagement];
 
 /**
- * A real macro photograph of a Canon RF 85mm f/1.2 lens starts closed.
- * As you scroll, the iris opens — the visible opening grows and the
- * f-stop readout counts down from f/8 to f/1.4, exactly as a real
- * diaphragm would. Once fully open, the lens reveals what it's pointed
- * at: a soft, cross-fading romantic couple scene, framed by real bokeh.
+ * A real macro photograph of a Canon RF 85mm f/1.2 lens starts closed —
+ * the whole medallion is that one photograph (barrel, glass and blades
+ * together, not a separate illustrated bezel), so nothing about it reads
+ * as fake. As you scroll, a diaphragm-shaped vignette opens over it and
+ * the f-stop readout counts down from f/8 to f/1.4. Once fully open, the
+ * lens reveals what it's focused on: a short romantic clip.
  */
 export function ApertureScroll() {
   const { lang } = useI18n();
@@ -42,8 +34,7 @@ export function ApertureScroll() {
     irisRadius,
     (r) => `radial-gradient(circle, transparent ${r}%, black ${r + 2}%)`,
   );
-  const lensRotate = useTransform(p, [0, 1], [3, -3]);
-  const lensScale = useTransform(p, [0, 1], [1.04, 1]);
+  const lensScale = useTransform(p, [0, 1], [1.03, 1]);
   const fStopIndex = useTransform(p, [0, 1], [0, FSTOPS.length - 1]);
 
   const bokehOpacity = useTransform(p, [0, 1], [0.12, 1]);
@@ -100,39 +91,28 @@ export function ApertureScroll() {
         </motion.div>
 
         <div className="relative flex flex-col items-center gap-10">
-          {/* Real lens module */}
-          <div className="relative h-[min(60vh,520px)] w-[min(60vh,520px)]">
-            {/* Bezel */}
-            <div
-              className="absolute inset-0 rounded-full border border-white/10"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 25%, #2a2a2a 0%, #0b0b0b 60%, #030303 100%)",
-                boxShadow: "inset 0 0 60px rgba(0,0,0,0.9), 0 30px 100px rgba(0,0,0,0.7)",
-              }}
+          {/* Real lens module — one photograph, barrel to blades, no illustrated parts */}
+          <motion.div
+            style={{ scale: lensScale }}
+            className="relative h-[min(60vh,520px)] w-[min(60vh,520px)] overflow-hidden rounded-full ring-1 ring-white/10 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.8)]"
+          >
+            {/* What the iris shows through: the real glass, fading to the scene it's focused on */}
+            <motion.img
+              src={heroLensImg}
+              alt="Canon RF 85mm f/1.2 aperture blades"
+              style={{ opacity: lensPhotoOpacity }}
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <motion.div
-              style={{ rotate: lensRotate, scale: lensScale }}
-              className="absolute inset-[10%] overflow-hidden rounded-full"
-            >
-              {/* What the iris shows through: the real glass, fading to the scene it's focused on */}
-              <motion.img
-                src={heroLensImg}
-                alt="Canon RF 85mm f/1.2 aperture blades"
-                style={{ opacity: lensPhotoOpacity }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <RomanticScene opacity={sceneOpacity} scale={sceneScale} />
+            <RomanticScene opacity={sceneOpacity} scale={sceneScale} />
 
-              {/* Diaphragm vignette — the iris opening itself */}
-              <motion.div
-                className="pointer-events-none absolute inset-0"
-                style={{ background: irisMask }}
-              />
-            </motion.div>
-            {/* Outer glow */}
-            <div className="pointer-events-none absolute -inset-6 rounded-full bg-gold/15 blur-3xl" />
-          </div>
+            {/* Diaphragm vignette — the iris opening itself */}
+            <motion.div
+              className="pointer-events-none absolute inset-0"
+              style={{ background: irisMask }}
+            />
+            {/* Specular rim light */}
+            <div className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_40px_rgba(0,0,0,0.6)]" />
+          </motion.div>
 
           {/* F-stop readout */}
           <div className="text-center">
@@ -157,33 +137,16 @@ function RomanticScene({
   opacity: MotionValue<number>;
   scale: MotionValue<number>;
 }) {
-  // A single looping value drives both photos so their opacities always
-  // sum to 1 — a true crossfade with no shared "both invisible" gap.
-  const cross = useMotionValue(0);
-  useEffect(() => {
-    const controls = animate(cross, 1, {
-      duration: 4.5,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut",
-    });
-    return () => controls.stop();
-  }, [cross]);
-  const crossInverse = useTransform(cross, (v) => 1 - v);
-
   return (
     <motion.div style={{ opacity, scale }} className="pointer-events-none absolute inset-0">
-      <motion.img
-        src={SCENE_PHOTOS[0]}
-        alt=""
+      <video
+        src={romanticVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: crossInverse }}
-      />
-      <motion.img
-        src={SCENE_PHOTOS[1]}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: cross }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
     </motion.div>

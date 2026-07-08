@@ -1,5 +1,13 @@
-import { useMemo, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
+import { useEffect, useMemo, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+  animate,
+  type MotionValue,
+} from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import heroLensImg from "@/assets/gear/hero-lens.jpg";
 import weddingA from "@/assets/gallery-wedding-1.jpg";
@@ -8,23 +16,20 @@ import engagement from "@/assets/gallery-engagement.jpg";
 import family from "@/assets/gallery-family.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
 
-const STOPS = [
-  { f: "f/1.4", blur: 32, bokeh: 1.0 },
-  { f: "f/2", blur: 24, bokeh: 0.85 },
-  { f: "f/2.8", blur: 18, bokeh: 0.7 },
-  { f: "f/4", blur: 12, bokeh: 0.55 },
-  { f: "f/5.6", blur: 6, bokeh: 0.4 },
-  { f: "f/8", blur: 2, bokeh: 0.25 },
-];
+// Closed (f/8) → wide open (f/1.4), matching real aperture mechanics:
+// a smaller opening keeps more of the frame in focus, a wider one
+// throws the background into soft bokeh.
+const FSTOPS = ["f/8", "f/5.6", "f/4", "f/2.8", "f/2", "f/1.4"];
 
-const BOKEH_PHOTOS = [weddingA, weddingB, engagement, family, extra1];
+const BOKEH_PHOTOS = [weddingA, weddingB, family, extra1];
+const SCENE_PHOTOS = [weddingA, engagement];
 
 /**
- * Scroll-driven aperture ladder shot on a real macro photo of a Canon
- * RF 85mm f/1.2 iris (not an illustration). A diaphragm-style vignette
- * closes the visible opening from f/1.4 → f/8 while real, heavily
- * defocused photographs stand in for the background bokeh, and a real
- * frame sharpens into view as the deep-field reveal.
+ * A real macro photograph of a Canon RF 85mm f/1.2 lens starts closed.
+ * As you scroll, the iris opens — the visible opening grows and the
+ * f-stop readout counts down from f/8 to f/1.4, exactly as a real
+ * diaphragm would. Once fully open, the lens reveals what it's pointed
+ * at: a soft, cross-fading romantic couple scene, framed by real bokeh.
  */
 export function ApertureScroll() {
   const { lang } = useI18n();
@@ -32,20 +37,21 @@ export function ApertureScroll() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const p = useSpring(scrollYProgress, { stiffness: 90, damping: 25, mass: 0.5 });
 
-  const irisRadius = useTransform(p, [0, 1], [92, 16]); // % — visible opening shrinks
-  const lensRotate = useTransform(p, [0, 1], [-6, 6]);
-  const lensScale = useTransform(p, [0, 1], [1.06, 0.97]);
-  const fStopIndex = useTransform(p, [0, 1], [0, STOPS.length - 1]);
-  const bokehOpacity = useTransform(p, [0, 1], [1, 0.12]);
-  const bokehScale = useTransform(p, [0, 1], [1.3, 0.7]);
-  const sceneOpacity = useTransform(p, [0.6, 0.95], [0, 1]);
-  const sceneBlur = useTransform(p, [0.6, 1], [24, 0]);
-  const sceneBlurCss = useTransform(sceneBlur, (v) => `blur(${v}px)`);
-  const sweepX = useTransform(p, [0, 1], ["-40%", "140%"]);
+  const irisRadius = useTransform(p, [0, 1], [9, 97]); // % — visible opening grows
   const irisMask = useTransform(
     irisRadius,
     (r) => `radial-gradient(circle, transparent ${r}%, black ${r + 2}%)`,
   );
+  const lensRotate = useTransform(p, [0, 1], [3, -3]);
+  const lensScale = useTransform(p, [0, 1], [1.04, 1]);
+  const fStopIndex = useTransform(p, [0, 1], [0, FSTOPS.length - 1]);
+
+  const bokehOpacity = useTransform(p, [0, 1], [0.12, 1]);
+  const bokehScale = useTransform(p, [0, 1], [0.75, 1.25]);
+
+  const lensPhotoOpacity = useTransform(p, [0.55, 0.85], [1, 0]);
+  const sceneOpacity = useTransform(p, [0.65, 0.95], [0, 1]);
+  const sceneScale = useTransform(p, [0.65, 1], [1.1, 1]);
 
   const bokehs = useMemo(
     () =>
@@ -67,7 +73,7 @@ export function ApertureScroll() {
       aria-label="Aperture scroll"
     >
       <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden">
-        {/* Bokeh field — real, heavily defocused photographs instead of flat dots */}
+        {/* Bokeh field — real, heavily defocused photographs; grows as the iris opens */}
         <motion.div
           style={{ opacity: bokehOpacity, scale: bokehScale }}
           className="pointer-events-none absolute inset-0"
@@ -93,15 +99,6 @@ export function ApertureScroll() {
           ))}
         </motion.div>
 
-        {/* Deep-field scene — a real frame sharpening into view at f/8 */}
-        <motion.div
-          style={{ opacity: sceneOpacity, filter: sceneBlurCss }}
-          className="pointer-events-none absolute inset-0"
-        >
-          <img src={weddingA} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/80" />
-        </motion.div>
-
         <div className="relative flex flex-col items-center gap-10">
           {/* Real lens module */}
           <div className="relative h-[min(60vh,520px)] w-[min(60vh,520px)]">
@@ -114,38 +111,23 @@ export function ApertureScroll() {
                 boxShadow: "inset 0 0 60px rgba(0,0,0,0.9), 0 30px 100px rgba(0,0,0,0.7)",
               }}
             />
-            {/* Real glass — an actual macro photograph of a Canon RF 85mm f/1.2 iris */}
             <motion.div
               style={{ rotate: lensRotate, scale: lensScale }}
               className="absolute inset-[10%] overflow-hidden rounded-full"
             >
-              <img
+              {/* What the iris shows through: the real glass, fading to the scene it's focused on */}
+              <motion.img
                 src={heroLensImg}
                 alt="Canon RF 85mm f/1.2 aperture blades"
-                className="h-full w-full object-cover"
+                style={{ opacity: lensPhotoOpacity }}
+                className="absolute inset-0 h-full w-full object-cover"
               />
-              {/* Diaphragm vignette — closes the visible opening as you scroll */}
+              <RomanticScene opacity={sceneOpacity} scale={sceneScale} />
+
+              {/* Diaphragm vignette — the iris opening itself */}
               <motion.div
                 className="pointer-events-none absolute inset-0"
                 style={{ background: irisMask }}
-              />
-              {/* Blade-seam segments for mechanical detail */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-40"
-                style={{
-                  background:
-                    "repeating-conic-gradient(from 0deg, transparent 0deg 38deg, rgba(0,0,0,0.35) 39deg 40deg)",
-                }}
-              />
-              {/* Light sweep across the coated glass */}
-              <motion.div
-                className="pointer-events-none absolute inset-y-0 w-1/3"
-                style={{
-                  left: sweepX,
-                  background:
-                    "linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent)",
-                  mixBlendMode: "screen",
-                }}
               />
             </motion.div>
             {/* Outer glow */}
@@ -159,9 +141,7 @@ export function ApertureScroll() {
             </p>
             <FStopReadout index={fStopIndex} />
             <p className="mt-2 text-xs text-gold/80">
-              {lang === "ar"
-                ? "مرّر لأسفل — من عزل خيالي إلى وضوح كامل"
-                : "Scroll — from dreamy bokeh to deep focus"}
+              {lang === "ar" ? "مرّر لأسفل — العدسة تنفتح تدريجيًا" : "Scroll — the lens opens up"}
             </p>
           </div>
         </div>
@@ -170,11 +150,51 @@ export function ApertureScroll() {
   );
 }
 
+function RomanticScene({
+  opacity,
+  scale,
+}: {
+  opacity: MotionValue<number>;
+  scale: MotionValue<number>;
+}) {
+  // A single looping value drives both photos so their opacities always
+  // sum to 1 — a true crossfade with no shared "both invisible" gap.
+  const cross = useMotionValue(0);
+  useEffect(() => {
+    const controls = animate(cross, 1, {
+      duration: 4.5,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    });
+    return () => controls.stop();
+  }, [cross]);
+  const crossInverse = useTransform(cross, (v) => 1 - v);
+
+  return (
+    <motion.div style={{ opacity, scale }} className="pointer-events-none absolute inset-0">
+      <motion.img
+        src={SCENE_PHOTOS[0]}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: crossInverse }}
+      />
+      <motion.img
+        src={SCENE_PHOTOS[1]}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: cross }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    </motion.div>
+  );
+}
+
 function FStopReadout({ index }: { index: MotionValue<number> }) {
   return (
     <div className="mt-2 flex items-center justify-center gap-3 font-mono text-2xl md:text-3xl">
-      {STOPS.map((s, i) => (
-        <FStopLabel key={s.f} index={index} i={i} label={s.f} />
+      {FSTOPS.map((f, i) => (
+        <FStopLabel key={f} index={index} i={i} label={f} />
       ))}
     </div>
   );

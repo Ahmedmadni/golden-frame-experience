@@ -55,7 +55,9 @@ function BookPage() {
   });
 
   async function onSubmit(v: FormValues) {
+    const { data: userData } = await supabase.auth.getUser();
     const { error } = await supabase.from("bookings").insert({
+      user_id: userData.user?.id ?? null,
       full_name: v.full_name,
       phone: v.phone,
       email: v.email,

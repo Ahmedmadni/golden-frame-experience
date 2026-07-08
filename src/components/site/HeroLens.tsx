@@ -1,55 +1,88 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
+import lensVideo from "@/assets/gear/lens-scrub.mp4";
 import heroLensImg from "@/assets/gear/hero-lens.jpg";
 
 /**
- * A real macro photograph of a Canon RF 85mm f/1.2 lens, rack-focused
- * by scroll position: it starts soft and pulled back, then sharpens,
- * settles and dollies in as the section is scrolled through — the
- * same focus-pull a cinematographer does by hand, driven by scroll.
+ * A real video of a lens iris, scrubbed frame-by-frame by scroll position
+ * within this section only — scroll to the top of the section and the
+ * video is at its first frame, scroll to the bottom and it's at its last.
  */
 export function HeroLens() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const p = useSpring(scrollYProgress, { stiffness: 80, damping: 24, mass: 0.5 });
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const targetTimeRef = useRef(0);
+  const [videoReady, setVideoReady] = useState(false);
 
-  const blur = useTransform(p, [0, 0.45, 0.6, 1], [18, 0, 0, 6]);
-  const brightness = useTransform(p, [0, 0.45], [0.55, 1]);
-  const filterCss = useTransform([blur, brightness], (latest) => {
-    const [b, br] = latest as [number, number];
-    return `blur(${b}px) brightness(${br})`;
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  useMotionValueEvent(scrollYProgress, "change", (p) => {
+    targetTimeRef.current = Math.max(0, Math.min(1, p));
   });
-  const scale = useTransform(p, [0, 1], [1.18, 1.32]);
-  const y = useTransform(p, [0, 1], ["-4%", "4%"]);
-  const sweepX = useTransform(p, [0, 1], ["-30%", "130%"]);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+
+    const step = () => {
+      if (!v.duration || Number.isNaN(v.duration)) {
+        rafRef.current = requestAnimationFrame(step);
+        return;
+      }
+      const target = targetTimeRef.current * v.duration;
+      const current = v.currentTime;
+      const next = current + (target - current) * 0.15;
+      if (Math.abs(next - current) > 0.005) {
+        try {
+          v.currentTime = next;
+        } catch {
+          // ignore scrub seek errors
+        }
+      }
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    const start = () => {
+      if (rafRef.current == null) rafRef.current = requestAnimationFrame(step);
+    };
+    if (v.readyState >= 1) start();
+    else v.addEventListener("loadedmetadata", start, { once: true });
+
+    return () => {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, []);
 
   return (
     <section ref={ref} className="relative h-[200vh] w-full bg-background" aria-label="Hero lens">
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-        <motion.div style={{ scale, y }} className="absolute inset-0">
-          <motion.img
-            src={heroLensImg}
-            alt="Canon RF 85mm f/1.2 L lens, macro"
-            className="h-full w-full object-cover"
-            style={{ filter: filterCss }}
-          />
-        </motion.div>
+        {/* Placeholder while the video loads */}
+        <div
+          className="pointer-events-none absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: videoReady ? 0 : 1 }}
+        >
+          <img src={heroLensImg} alt="" className="h-full w-full object-cover blur-sm scale-105" />
+        </div>
 
-        {/* Light sweep across the coated glass as focus lands */}
-        <motion.div
-          className="pointer-events-none absolute inset-y-0 w-1/4"
-          style={{
-            left: sweepX,
-            background: "linear-gradient(100deg, transparent, rgba(255,255,255,0.18), transparent)",
-            mixBlendMode: "screen",
-          }}
+        <video
+          ref={videoRef}
+          src={lensVideo}
+          poster={heroLensImg}
+          muted
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoReady(true)}
+          className="h-full w-full object-cover transition-opacity duration-700"
+          style={{ opacity: videoReady ? 1 : 0 }}
         />
 
         {/* Subtle vignette overlay */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: "radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.45) 100%)",
+            background: "radial-gradient(circle at center, transparent 65%, rgba(0,0,0,0.35) 100%)",
           }}
         />
       </div>

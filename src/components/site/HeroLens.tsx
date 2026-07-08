@@ -32,7 +32,7 @@ export function HeroLens() {
       }
       const target = targetTimeRef.current * v.duration;
       const current = v.currentTime;
-      const next = current + (target - current) * 0.15;
+      const next = current + (target - current) * 0.35;
       if (Math.abs(next - current) > 0.005) {
         try {
           v.currentTime = next;

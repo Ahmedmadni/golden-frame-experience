@@ -1,5 +1,12 @@
-import { useMemo, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
+import { useEffect, useMemo, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+  type MotionValue,
+} from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import heroLensImg from "@/assets/gear/hero-lens.jpg";
 import romanticVideo from "@/assets/gear/romantic-scene.mp4";
@@ -12,6 +19,9 @@ import extra1 from "@/assets/gallery-extra-1.jpg";
 // a smaller opening keeps more of the frame in focus, a wider one
 // throws the background into soft bokeh.
 const FSTOPS = ["f/8", "f/5.6", "f/4", "f/2.8", "f/2", "f/1.4"];
+
+// The romantic clip only starts scrubbing once the iris is mostly open.
+const SCENE_REVEAL_START = 0.65;
 
 const BOKEH_PHOTOS = [weddingA, weddingB, family, extra1];
 
@@ -41,8 +51,8 @@ export function ApertureScroll() {
   const bokehScale = useTransform(p, [0, 1], [0.75, 1.25]);
 
   const lensPhotoOpacity = useTransform(p, [0.55, 0.85], [1, 0]);
-  const sceneOpacity = useTransform(p, [0.65, 0.95], [0, 1]);
-  const sceneScale = useTransform(p, [0.65, 1], [1.1, 1]);
+  const sceneOpacity = useTransform(p, [SCENE_REVEAL_START, 0.95], [0, 1]);
+  const sceneScale = useTransform(p, [SCENE_REVEAL_START, 1], [1.1, 1]);
 
   const bokehs = useMemo(
     () =>
@@ -103,7 +113,7 @@ export function ApertureScroll() {
               style={{ opacity: lensPhotoOpacity }}
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <RomanticScene opacity={sceneOpacity} scale={sceneScale} />
+            <RomanticScene p={p} opacity={sceneOpacity} scale={sceneScale} />
 
             {/* Diaphragm vignette — the iris opening itself */}
             <motion.div
@@ -131,19 +141,64 @@ export function ApertureScroll() {
 }
 
 function RomanticScene({
+  p,
   opacity,
   scale,
 }: {
+  p: MotionValue<number>;
   opacity: MotionValue<number>;
   scale: MotionValue<number>;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const targetTimeRef = useRef(0);
+
+  useMotionValueEvent(p, "change", (v) => {
+    const local = (v - SCENE_REVEAL_START) / (1 - SCENE_REVEAL_START);
+    targetTimeRef.current = Math.max(0, Math.min(1, local));
+  });
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+
+    const step = () => {
+      if (!v.duration || Number.isNaN(v.duration)) {
+        rafRef.current = requestAnimationFrame(step);
+        return;
+      }
+      const target = targetTimeRef.current * v.duration;
+      const current = v.currentTime;
+      const next = current + (target - current) * 0.35;
+      if (Math.abs(next - current) > 0.005) {
+        try {
+          v.currentTime = next;
+        } catch {
+          // ignore scrub seek errors
+        }
+      }
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    const start = () => {
+      if (rafRef.current == null) rafRef.current = requestAnimationFrame(step);
+    };
+    if (v.readyState >= 1) start();
+    else v.addEventListener("loadedmetadata", start, { once: true });
+
+    return () => {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, []);
+
   return (
     <motion.div style={{ opacity, scale }} className="pointer-events-none absolute inset-0">
       <video
+        ref={videoRef}
         src={romanticVideo}
-        autoPlay
         muted
-        loop
         playsInline
         preload="auto"
         className="absolute inset-0 h-full w-full object-cover"

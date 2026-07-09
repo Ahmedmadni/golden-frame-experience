@@ -58,8 +58,8 @@ function StoryCard({ story, index, onOpen }: { story: WeddingStory; index: numbe
         className="absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out group-hover:scale-110 group-hover:blur-[2px]"
       />
 
-      {/* Cinematic overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      {/* Cinematic overlay — deeper scrim so meta row + CTA never sit on skin tones */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/70 to-transparent" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/50" />
 
       {/* Lens flare on hover */}

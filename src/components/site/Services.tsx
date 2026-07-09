@@ -30,9 +30,9 @@ export function Services() {
                 className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
               />
             </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/70 to-transparent p-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/90 to-transparent px-6 pb-6 pt-20 md:pt-24">
               <h3 className="font-display text-2xl md:text-3xl">{t(`${s.tKey}.title`)}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{t(`${s.tKey}.desc`)}</p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t(`${s.tKey}.desc`)}</p>
             </div>
             <span className="absolute top-4 end-4 rounded-full border border-gold/40 bg-background/60 px-3 py-1 text-[10px] uppercase tracking-widest text-gold backdrop-blur">
               {String(i + 1).padStart(2, "0")}

@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -12,6 +12,17 @@ function serverClient() {
     process.env.SUPABASE_PUBLISHABLE_KEY!,
     { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
   );
+}
+
+async function isAdmin(supabase: SupabaseClient, userId: string): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("role", "admin")
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return !!data;
 }
 
 async function withSignedUrls<T extends { image_path: string }>(
@@ -43,11 +54,7 @@ export const listPublicGallery = createServerFn({ method: "GET" }).handler(async
 export const adminListGallery = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!(await isAdmin(context.supabase, context.userId))) throw new Error("Forbidden");
     const { data, error } = await context.supabase
       .from("gallery_items")
       .select("*")
@@ -64,11 +71,7 @@ export const createUploadUrl = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => UploadSchema.parse(d))
   .handler(async ({ context, data }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!(await isAdmin(context.supabase, context.userId))) throw new Error("Forbidden");
     const safe = data.filename.replace(/[^a-zA-Z0-9._-]/g, "_");
     const path = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}-${safe}`;
     const { data: signed, error } = await context.supabase.storage
@@ -94,11 +97,7 @@ export const createGalleryItem = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => CreateSchema.parse(d))
   .handler(async ({ context, data }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!(await isAdmin(context.supabase, context.userId))) throw new Error("Forbidden");
     const { error } = await context.supabase.from("gallery_items").insert(data);
     if (error) throw new Error(error.message);
     return { ok: true };
@@ -110,11 +109,7 @@ export const updateGalleryItem = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => UpdateSchema.parse(d))
   .handler(async ({ context, data }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!(await isAdmin(context.supabase, context.userId))) throw new Error("Forbidden");
     const { id, ...patch } = data;
     const { error } = await context.supabase.from("gallery_items").update(patch).eq("id", id);
     if (error) throw new Error(error.message);
@@ -127,11 +122,7 @@ export const deleteGalleryItem = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: unknown) => DeleteSchema.parse(d))
   .handler(async ({ context, data }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!(await isAdmin(context.supabase, context.userId))) throw new Error("Forbidden");
     await context.supabase.storage.from("gallery").remove([data.image_path]);
     const { error } = await context.supabase.from("gallery_items").delete().eq("id", data.id);
     if (error) throw new Error(error.message);

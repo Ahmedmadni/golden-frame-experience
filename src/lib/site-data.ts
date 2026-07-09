@@ -28,6 +28,16 @@ export const CATEGORIES: Category[] = [
 
 export type GalleryItem = { src: string; category: Category; ratio: "portrait" | "landscape" | "square"; alt: string };
 
+import { WEDDING_LIB } from "./wedding-images";
+
+const weddingLibItems: GalleryItem[] = [
+  ...WEDDING_LIB.weddings.map((w) => ({ ...w, category: "weddings" as Category })),
+  ...WEDDING_LIB.rings.map((w) => ({ ...w, category: "weddings" as Category })),
+  ...WEDDING_LIB.details.map((w) => ({ ...w, category: "weddings" as Category })),
+  ...WEDDING_LIB.celebration.map((w) => ({ ...w, category: "weddings" as Category })),
+  ...WEDDING_LIB.engagement.map((w) => ({ ...w, category: "engagement" as Category })),
+];
+
 export const GALLERY: GalleryItem[] = [
   { src: weddingA, category: "weddings", ratio: "portrait", alt: "Bride and groom at golden hour" },
   { src: extra2, category: "fashion", ratio: "portrait", alt: "Model in gold jewellery" },
@@ -47,6 +57,7 @@ export const GALLERY: GalleryItem[] = [
   { src: fashionB, category: "fashion", ratio: "landscape", alt: "Model with gold jewellery" },
   { src: family, category: "family", ratio: "landscape", alt: "Family portrait at sunset" },
   { src: graduation, category: "graduation", ratio: "portrait", alt: "Graduation cap toss" },
+  ...weddingLibItems,
 ];
 
 export const SERVICES = [

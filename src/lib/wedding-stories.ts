@@ -14,6 +14,13 @@ import poseDip from "@/assets/pose-dip.jpg";
 import poseForehead from "@/assets/pose-forehead.jpg";
 import poseTwirl from "@/assets/pose-twirl.jpg";
 import poseWalking from "@/assets/pose-walking.jpg";
+import { WEDDING_LIB } from "./wedding-images";
+
+const W = WEDDING_LIB.weddings.map((w) => w.src);
+const E = WEDDING_LIB.engagement.map((w) => w.src);
+const R = WEDDING_LIB.rings.map((w) => w.src);
+const D = WEDDING_LIB.details.map((w) => w.src);
+const C = WEDDING_LIB.celebration.map((w) => w.src);
 
 export type Chapter = {
   key: "preparations" | "first-look" | "outdoor" | "hall" | "final";

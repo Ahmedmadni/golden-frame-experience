@@ -108,12 +108,13 @@ export const WEDDING_STORIES: WeddingStory[] = [
     album: { ar: "ألبوم كريستال ملكي", en: "Royal Crystal Album" },
     chapters: buildChapters(
       {
-        preparations: [poseDetails, extra3],
-        "first-look": [poseForehead, weddingB],
-        outdoor: [poseDip, extra4, poseWalking],
-        hall: [weddingA, extra6, extra2],
-        final: [poseTwirl, extra5],
+        preparations: [poseDetails, D[1], D[3], extra3, D[4]],
+        "first-look": [W[7], poseForehead, weddingB, W[11]],
+        outdoor: [poseDip, W[13], extra4, poseWalking, W[19]],
+        hall: [C[1], C[2], weddingA, extra6, C[5], extra2],
+        final: [C[3], poseTwirl, extra5, R[1]],
       },
+
       {
         preparations: "طقوس الصباح الهادئة وتفاصيل البدلة والفستان.",
         "first-look": "دموع فرح ونظرات لا توصف.",
@@ -141,12 +142,13 @@ export const WEDDING_STORIES: WeddingStory[] = [
     album: { ar: "ألبوم جلد يدوي", en: "Handmade Leather Album" },
     chapters: buildChapters(
       {
-        preparations: [poseDetails, extra1, poseForehead],
-        "first-look": [engagement, poseDip],
-        outdoor: [poseBack, extra4],
-        hall: [weddingA, extra2, extra6],
-        final: [poseTwirl, extra5],
+        preparations: [poseDetails, extra1, D[0], poseForehead, D[2]],
+        "first-look": [E[0], engagement, E[2], poseDip],
+        outdoor: [E[1], poseBack, E[3], extra4, E[5]],
+        hall: [W[15], extra2, extra6, W[20], C[0]],
+        final: [E[7], poseTwirl, extra5, R[3]],
       },
+
       {
         preparations: "طقوس الحنة وضحكات الصبايا.",
         "first-look": "أول لقاء بعد كتب الكتاب.",
@@ -174,12 +176,13 @@ export const WEDDING_STORIES: WeddingStory[] = [
     album: { ar: "ألبوم أكريليك مضيء", en: "Luminous Acrylic Album" },
     chapters: buildChapters(
       {
-        preparations: [poseDetails, extra3, extra1],
-        "first-look": [poseForehead, weddingA],
-        outdoor: [poseDip, poseWalking, extra4],
-        hall: [weddingB, extra6, extra2, family],
-        final: [poseTwirl, extra5, poseBack],
+        preparations: [poseDetails, extra3, D[1], extra1, D[3]],
+        "first-look": [W[16], poseForehead, W[8], W[17]],
+        outdoor: [poseDip, W[12], poseWalking, extra4, W[21]],
+        hall: [C[6], weddingB, extra6, C[7], extra2, family, C[1]],
+        final: [C[4], poseTwirl, extra5, poseBack, R[2]],
       },
+
       {
         preparations: "لمسات أخيرة قبل الخروج.",
         "first-look": "لحظة صمت قبل العاصفة السعيدة.",

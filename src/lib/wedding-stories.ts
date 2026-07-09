@@ -74,11 +74,11 @@ export const WEDDING_STORIES: WeddingStory[] = [
     album: { ar: "ألبوم إيطالي فاخر", en: "Italian Luxury Album" },
     chapters: buildChapters(
       {
-        preparations: [poseDetails, extra1, poseForehead],
-        "first-look": [weddingA, poseDip],
-        outdoor: [poseWalking, poseBack, extra4],
-        hall: [weddingB, extra2, extra6],
-        final: [poseTwirl, extra5],
+        preparations: [poseDetails, D[0], D[2], extra1, poseForehead],
+        "first-look": [W[3], W[4], poseDip, W[6]],
+        outdoor: [poseWalking, W[1], poseBack, extra4, W[10]],
+        hall: [C[0], C[6], weddingB, extra2, C[7]],
+        final: [C[4], poseTwirl, extra5, R[0]],
       },
       {
         preparations: "تفاصيل الفستان، المكياج، وأول ابتسامة للعروس.",
@@ -96,6 +96,7 @@ export const WEDDING_STORIES: WeddingStory[] = [
       },
     ),
   },
+
   {
     id: "mohamed-reem",
     cover: weddingB,

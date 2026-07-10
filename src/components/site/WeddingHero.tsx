@@ -75,8 +75,9 @@ export function WeddingHero() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Cinematic gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/70" />
+      {/* Cinematic gradients — stronger bottom scrim so text stays legible */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/40" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/70 to-transparent" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(0,0,0,0.55)_100%)]" />
       {/* Gold ambient */}
       <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[60vh] w-[80vw] -translate-x-1/2 rounded-full bg-gold/15 blur-[140px]" />
@@ -89,11 +90,12 @@ export function WeddingHero() {
         }}
       />
 
-      {/* Content */}
+      {/* Content — pushed up from the scroll cue to prevent overlap */}
       <motion.div
         style={{ opacity: overlayOpacity, y: overlayY }}
-        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-24 md:px-10 md:pb-32"
+        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-36 md:px-10 md:pb-44"
       >
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

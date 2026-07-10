@@ -5,8 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Fraunces", "Tajawal", ui-serif, Georgia, serif;
-  --font-sans: "Inter Tight", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "El Messiri", "Tajawal", ui-serif, Georgia, serif;
+  --font-sans: "Inter Tight", "Cairo", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic-display: "El Messiri", "Amiri", "Tajawal", serif;
+  --font-arabic-body: "Cairo", "Tajawal", system-ui, sans-serif;
+
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -101,9 +104,33 @@
     font-feature-settings: "cv02", "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    line-height: 1.55;
   }
-  [dir="rtl"] body { font-family: "Tajawal", var(--font-sans); }
-  h1, h2, h3, h4 { font-family: var(--font-display); font-feature-settings: "ss01"; letter-spacing: -0.028em; font-variation-settings: "opsz" 144; font-weight: 500; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01";
+    letter-spacing: -0.028em;
+    font-variation-settings: "opsz" 144;
+    font-weight: 500;
+  }
+  [dir="rtl"] body {
+    font-family: var(--font-arabic-body);
+    letter-spacing: 0;
+    line-height: 1.75;
+  }
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4 {
+    font-family: var(--font-arabic-display);
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  /* Arabic display shouldn't crush its own descenders */
+  [dir="rtl"] .font-display { font-family: var(--font-arabic-display); letter-spacing: 0; }
+  /* Softer uppercase micro-copy for Arabic (no all-caps effect) */
+  [dir="rtl"] .uppercase { text-transform: none; letter-spacing: 0.08em; }
   ::selection { background: oklch(0.78 0.13 85 / 0.35); color: var(--color-foreground); }
 }
 

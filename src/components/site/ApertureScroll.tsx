@@ -2,11 +2,12 @@ import { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import heroLensImg from "@/assets/gear/hero-lens.jpg";
-import romanticVideo from "@/assets/gear/romantic-scene.mp4";
 import weddingA from "@/assets/gallery-wedding-1.jpg";
 import weddingB from "@/assets/gallery-wedding-2.jpg";
 import family from "@/assets/gallery-family.jpg";
 import extra1 from "@/assets/gallery-extra-1.jpg";
+
+const ROMANTIC_SCENE_URL = "/__l5e/assets-v1/7fceab08-7ca7-408d-86ab-aa5b28a9cd4d/romantic-scene.mp4";
 
 // Closed (f/8) → wide open (f/1.4), matching real aperture mechanics:
 // a smaller opening keeps more of the frame in focus, a wider one
@@ -140,7 +141,7 @@ function RomanticScene({
   return (
     <motion.div style={{ opacity, scale }} className="pointer-events-none absolute inset-0">
       <video
-        src={romanticVideo}
+        src={ROMANTIC_SCENE_URL}
         autoPlay
         muted
         loop

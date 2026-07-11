@@ -3,12 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import weddingA from "@/assets/gallery-wedding-1.jpg";
-import weddingB from "@/assets/gallery-wedding-2.jpg";
-import engagement from "@/assets/gallery-engagement.jpg";
-import extra1 from "@/assets/gallery-extra-1.jpg";
-import extra4 from "@/assets/gallery-extra-4.jpg";
-import family from "@/assets/gallery-family.jpg";
+import { WEDDING_LIB } from "@/lib/wedding-images";
 
 /**
  * Cinematic wedding hero:
@@ -18,14 +13,10 @@ import family from "@/assets/gallery-family.jpg";
  *  - Overlaid headline, CTA and progress indicator
  */
 
-const SLIDES = [
-  { src: weddingA, focus: "50% 40%" },
-  { src: extra1, focus: "50% 45%" },
-  { src: weddingB, focus: "50% 35%" },
-  { src: engagement, focus: "50% 50%" },
-  { src: extra4, focus: "50% 45%" },
-  { src: family, focus: "50% 50%" },
-];
+const SLIDES = WEDDING_LIB.weddings.map((img, i) => ({
+  src: img.src,
+  focus: i % 2 === 0 ? ("50% 40%" as const) : ("50% 55%" as const),
+}));
 
 const INTERVAL = 6000;
 

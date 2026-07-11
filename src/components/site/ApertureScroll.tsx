@@ -141,7 +141,7 @@ function RomanticScene({
   return (
     <motion.div style={{ opacity, scale }} className="pointer-events-none absolute inset-0">
       <video
-        src={romanticVideo}
+        src={ROMANTIC_SCENE_URL}
         autoPlay
         muted
         loop

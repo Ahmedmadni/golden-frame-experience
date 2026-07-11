@@ -25,7 +25,7 @@ export function Featured() {
         >
           <motion.video
             style={{ y, scale }}
-            src={romanticScene.url}
+            src={ROMANTIC_SCENE_URL}
             poster={featuredCover}
             autoPlay
             muted

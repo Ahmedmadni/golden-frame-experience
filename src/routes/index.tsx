@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WeddingHero } from "@/components/site/WeddingHero";
-import { HeroLens } from "@/components/site/HeroLens";
+
 import { ApertureScroll } from "@/components/site/ApertureScroll";
 import { CameraBag } from "@/components/site/CameraBag";
 import { WeddingTimeline } from "@/components/site/WeddingTimeline";
@@ -35,8 +35,6 @@ function Index() {
       <ApertureScroll />
       <LuxuryAlbums />
       <Featured />
-      {/* Cinematic lens interlude */}
-      <HeroLens />
       <CameraBag />
       <Awards />
       <Testimonials />

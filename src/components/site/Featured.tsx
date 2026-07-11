@@ -3,12 +3,14 @@ import { useRef } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Section } from "./Section";
 import featuredCover from "@/assets/featured-cover.jpg";
+import romanticScene from "@/assets/gear/romantic-scene.mp4.asset.json";
 
 export function Featured() {
   const { t } = useI18n();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
 
   return (
     <Section>
@@ -20,13 +22,19 @@ export function Featured() {
           transition={{ duration: 0.8 }}
           className="lg:col-span-7 relative overflow-hidden rounded-lg"
         >
-          <motion.img
-            style={{ y }}
-            src={featuredCover}
-            alt="Featured project"
-            loading="lazy"
+          <motion.video
+            style={{ y, scale }}
+            src={romanticScene.url}
+            poster={featuredCover}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
             className="h-[65vh] w-full object-cover"
           />
+          <span className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <span className="absolute inset-0 pointer-events-none vignette" />
           <span className="absolute top-6 start-6 rounded-full bg-background/70 px-4 py-1.5 text-[10px] uppercase tracking-widest text-gold backdrop-blur">
             {t("featured.eyebrow")}
           </span>

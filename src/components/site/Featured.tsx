@@ -3,7 +3,8 @@ import { useRef } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Section } from "./Section";
 import featuredCover from "@/assets/featured-cover.jpg";
-import romanticScene from "@/assets/gear/romantic-scene.mp4.asset.json";
+
+const ROMANTIC_SCENE_URL = "/__l5e/assets-v1/7fceab08-7ca7-408d-86ab-aa5b28a9cd4d/romantic-scene.mp4";
 
 export function Featured() {
   const { t } = useI18n();

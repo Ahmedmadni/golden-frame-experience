@@ -17,6 +17,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Cursor } from "@/components/site/Cursor";
 import { PageTransition } from "@/components/site/PageTransition";
+import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -140,6 +141,7 @@ function RootComponent() {
           </PageTransition>
         </main>
         <Footer />
+        <WhatsAppFloat />
         <Toaster />
       </LanguageProvider>
     </QueryClientProvider>

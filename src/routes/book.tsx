@@ -31,7 +31,7 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export const Route = createFileRoute("/book")({
-  validateSearch: (s: Record<string, unknown>) => ({ pkg: (s.pkg as string) ?? "" }),
+  validateSearch: (s: Record<string, unknown>): { pkg?: string } => ({ pkg: typeof s.pkg === "string" ? s.pkg : undefined }),
   head: () => ({
     meta: [
       { title: "Book a session · Ahmed Almadani" },
@@ -51,7 +51,7 @@ function BookPage() {
   const [done, setDone] = useState(false);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { package_name: search.pkg, add_video: false },
+    defaultValues: { package_name: search.pkg ?? "", add_video: false },
   });
 
   async function onSubmit(v: FormValues) {

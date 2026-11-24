@@ -102,6 +102,45 @@ export const PACKAGES = [
   },
 ];
 
+export const ADDONS = [
+  {
+    key: "drone",
+    price: 8000,
+    name: { en: "Drone coverage", ar: "تصوير بالدرون" },
+    desc: { en: "Aerial establishing shots of the venue and outdoor sessions.", ar: "لقطات جوية افتتاحية للقاعة والجلسات الخارجية." },
+  },
+  {
+    key: "second",
+    price: 6000,
+    name: { en: "Second shooter", ar: "مصوّر ثانٍ" },
+    desc: { en: "Parallel coverage of both families and candid angles all day.", ar: "تغطية متوازية للعائلتين وزوايا عفوية طوال اليوم." },
+  },
+  {
+    key: "express",
+    price: 5000,
+    name: { en: "Express delivery", ar: "تسليم سريع" },
+    desc: { en: "Full edited gallery within 48 hours instead of the standard timeline.", ar: "المعرض المعدّل كاملًا خلال 48 ساعة بدل المدة المعتادة." },
+  },
+  {
+    key: "album",
+    price: 12000,
+    name: { en: "Luxury printed album", ar: "ألبوم مطبوع فاخر" },
+    desc: { en: "30×30cm leather-bound album, 40 pages, designed with you page by page.", ar: "ألبوم جلد 30×30 سم، 40 صفحة، بتصميم معاكم صفحة بصفحة." },
+  },
+  {
+    key: "raw",
+    price: 7000,
+    name: { en: "RAW files", ar: "ملفات RAW" },
+    desc: { en: "Every unedited RAW file from the day, delivered on a USB drive.", ar: "كل ملفات اليوم الخام غير المعدّلة على فلاشة USB." },
+  },
+  {
+    key: "teaser",
+    price: 4000,
+    name: { en: "Same-day teaser", ar: "تيزر نفس اليوم" },
+    desc: { en: "A 60-second vertical reel edited and delivered before the night ends.", ar: "ريل عمودي 60 ثانية يتسلّم قبل نهاية الليلة." },
+  },
+];
+
 export const STATS = [
   { key: "stat.years", value: 12, suffix: "+" },
   { key: "stat.clients", value: 480, suffix: "+" },

@@ -136,14 +136,15 @@ export function WeddingHero() {
           </a>
         </motion.div>
 
-        {/* Slide indicators */}
-        <div className="mt-10 flex items-center gap-2">
+        {/* Slide indicators — flex-1 so all 24 fit any viewport width */}
+        <div className="mt-10 flex w-full max-w-md items-center gap-1.5">
           {SLIDES.map((_, i) => (
             <button
               key={i}
               onClick={() => setIdx(i)}
               aria-label={`Slide ${i + 1}`}
-              className="group relative h-[2px] w-10 overflow-hidden bg-white/25"
+              aria-current={i === idx}
+              className="group relative h-[2px] min-w-[4px] flex-1 overflow-hidden bg-white/25"
             >
               <span
                 className={`absolute inset-y-0 left-0 bg-gold transition-[width] ease-linear ${

@@ -62,9 +62,9 @@ const en: Dict = {
   "packages.essential.name": "Essential",
   "packages.essential.desc": "Intimate sessions, portraits, and single-day events.",
   "packages.signature.name": "Signature",
-  "packages.signature.desc": "Weddings, fashion editorials, brand campaigns.",
+  "packages.signature.desc": "Full wedding days — henna night to the last dance.",
   "packages.cinematic.name": "Cinematic",
-  "packages.cinematic.desc": "Full-scale productions with film crew and dailies.",
+  "packages.cinematic.desc": "Multi-day weddings with a full film crew and drone.",
   "packages.currency": "EGP",
   "packages.from": "from",
   "packages.perProject": "/ project",
@@ -183,6 +183,23 @@ const en: Dict = {
   "poses.meta.style": "Editorial · documentary · cinematic",
   "poses.cta.title": "Let's shoot these together.",
   "poses.cta.sub": "Book a consultation and we'll build a shot list around your story.",
+
+  "nav.pricing": "Pricing",
+  "pricing.eyebrow": "Investment",
+  "pricing.title": "Clear pricing, no surprises.",
+  "pricing.sub":
+    "Every package is customisable. Add what you need, remove what you don't — the final quote is confirmed before any deposit.",
+  "pricing.addons.eyebrow": "Add-ons",
+  "pricing.addons.title": "Build your perfect coverage.",
+  "pricing.addons.sub": "Extras you can attach to any package.",
+  "pricing.terms.eyebrow": "Booking terms",
+  "pricing.terms.title": "How booking works.",
+  "pricing.terms.deposit": "A 30% deposit reserves your date — Vodafone Cash, InstaPay or bank transfer.",
+  "pricing.terms.balance": "The remaining balance is due on the event day.",
+  "pricing.terms.travel": "Travel inside El-Minya governorate is free; other cities add a simple transport fee.",
+  "pricing.terms.reschedule": "Free rescheduling once, up to 30 days before the date.",
+  "pricing.cta": "Check your date",
+  "pricing.note": "Prices in Egyptian pounds. Final quote confirmed in writing before booking.",
 };
 
 const ar: Dict = {
@@ -243,9 +260,9 @@ const ar: Dict = {
   "packages.essential.name": "أساسية",
   "packages.essential.desc": "جلسات خاصة وبورتريه ومناسبات يوم واحد.",
   "packages.signature.name": "المميّزة",
-  "packages.signature.desc": "أعراس، تصوير أزياء تحريري، حملات علامات.",
+  "packages.signature.desc": "أيام الفرح الكاملة — من ليلة الحنة لآخر رقصة.",
   "packages.cinematic.name": "السينمائية",
-  "packages.cinematic.desc": "إنتاجات كاملة بفريق سينما ومقاطع يومية.",
+  "packages.cinematic.desc": "أفراح متعددة الأيام بفريق تصوير كامل ودرون.",
   "packages.currency": "ج.م",
   "packages.from": "تبدأ من",
   "packages.perProject": "/ مشروع",
@@ -364,6 +381,23 @@ const ar: Dict = {
   "poses.meta.style": "تحريري · وثائقي · سينمائي",
   "poses.cta.title": "خلينا نصوّرهم مع بعض.",
   "poses.cta.sub": "احجز استشارة وهنبني لك قائمة لقطات مخصّصة لقصتكم.",
+
+  "nav.pricing": "الأسعار",
+  "pricing.eyebrow": "الاستثمار",
+  "pricing.title": "أسعار واضحة، من غير مفاجآت.",
+  "pricing.sub":
+    "كل باقة قابلة للتخصيص. ضيف اللي محتاجه وشيل اللي مش محتاجه — والسعر النهائي بيتأكد كتابيًا قبل أي عربون.",
+  "pricing.addons.eyebrow": "إضافات",
+  "pricing.addons.title": "ركّب التغطية المثالية ليك.",
+  "pricing.addons.sub": "إضافات تقدر تلحقها بأي باقة.",
+  "pricing.terms.eyebrow": "شروط الحجز",
+  "pricing.terms.title": "الحجز بيمشي إزاي.",
+  "pricing.terms.deposit": "عربون 30% بيحجز المعاد — فودافون كاش، إنستاباي، أو تحويل بنكي.",
+  "pricing.terms.balance": "باقي المبلغ بيتحصل يوم المناسبة.",
+  "pricing.terms.travel": "الانتقال داخل محافظة المنيا مجاني، وباقي المحافظات ليها رسوم انتقال بسيطة.",
+  "pricing.terms.reschedule": "تأجيل مجاني مرة واحدة، لحد 30 يوم قبل المعاد.",
+  "pricing.cta": "اتأكد من معادك",
+  "pricing.note": "الأسعار بالجنيه المصري. السعر النهائي بيتأكد كتابيًا قبل الحجز.",
 };
 
 const dicts: Record<Lang, Dict> = { en, ar };
